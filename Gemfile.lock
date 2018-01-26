@@ -8,6 +8,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    diff-lcs (1.3)
     erubis (2.7.0)
     excon (0.60.0)
     heroics (0.0.24)
@@ -17,7 +18,20 @@ GEM
       multi_json (>= 1.9.2)
     moneta (1.0.0)
     multi_json (1.13.1)
-    rake (12.3.0)
+    rake (10.5.0)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.0)
 
 PLATFORMS
   ruby
@@ -25,7 +39,8 @@ PLATFORMS
 DEPENDENCIES
   bundler
   liblynx-api!
-  rake
+  rake (< 11.0)
+  rspec
 
 BUNDLED WITH
    1.15.4

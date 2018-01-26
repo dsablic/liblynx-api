@@ -12,7 +12,7 @@
   "id": "http://connect.liblynx.com/schema#",
   "links": [
     {
-      "href": "https://connect.liblynx.com/api",
+      "href": "https://connect.liblynx.com",
       "rel": "self"
     },
     {

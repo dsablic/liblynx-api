@@ -1,7 +1,7 @@
 require 'bundler/gem_tasks'
 
 desc 'Build the client'
-task :default do
+task :build do
   sh 'bundle exec heroics-generate ./config/config.rb > lib/liblynx-api/client.rb'
 end
 
