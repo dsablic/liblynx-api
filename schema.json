@@ -1,0 +1,28 @@
+{
+  "$schema": "http://interagent.github.io/interagent-hyper-schema",
+  "type": [
+    "object"
+  ],
+  "definitions": {
+  },
+  "properties" : {
+
+  },
+  "description": "",
+  "id": "http://connect.liblynx.com/schema#",
+  "links": [
+    {
+      "href": "https://connect.liblynx.com/api",
+      "rel": "self"
+    },
+    {
+      "href": "/schema",
+      "method": "GET",
+      "rel": "self",
+      "targetSchema": {
+        "additionalProperties": true
+      }
+    }
+  ],
+  "title": "LibLynx API"
+}

@@ -1,0 +1,31 @@
+PATH
+  remote: .
+  specs:
+    liblynx-api (0.0.1)
+      heroics
+      moneta
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    erubis (2.7.0)
+    excon (0.60.0)
+    heroics (0.0.24)
+      erubis (~> 2.0)
+      excon
+      moneta
+      multi_json (>= 1.9.2)
+    moneta (1.0.0)
+    multi_json (1.13.1)
+    rake (12.3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler
+  liblynx-api!
+  rake
+
+BUNDLED WITH
+   1.15.4
