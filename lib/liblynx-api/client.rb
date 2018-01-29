@@ -86,20 +86,41 @@ module LibLynxAPI
     default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/0.0.1"}
     {
       default_headers: default_headers,
-      url:             "https://connect.liblynx.com/api"
+      url:             "https://connect.liblynx.com"
     }
   end
 
   private_class_method :default_options, :custom_options
 
-  # 
+  # LibLynx API schema
   class Client
     def initialize(client)
       @client = client
     end
+
+    # 
+    #
+    # @return [Token]
+    def token
+      @token_resource ||= Token.new(@client)
+    end
   end
 
   private
+
+  # 
+  class Token
+    def initialize(client)
+      @client = client
+    end
+
+    # Create a new oauth2 token
+    #
+    # @param body: the object to pass as the request payload
+    def create(body = {})
+      @client.token.create(body)
+    end
+  end
 
   SCHEMA = Heroics::Schema.new(MultiJson.load(<<-'HEROICS_SCHEMA'))
 {
@@ -108,23 +129,62 @@ module LibLynxAPI
     "object"
   ],
   "definitions": {
+    "token": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "OAuth2 token",
+      "description": "",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "grant_type": {
+          "description": "Token grant type",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new oauth2 token",
+          "encType": "application/x-www-form-urlencoded",
+          "href": "/oauth/v2/token",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "grant_type": {
+                "$ref": "#/definitions/token/definitions/name"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        }
+      ],
+      "properties": {
+        "grant_type": {
+          "$ref": "#/definitions/token/definitions/name"
+        }
+      }
+    }
   },
   "properties": {
+    "token": {
+      "$ref": "#/definitions/token"
+    }
   },
-  "description": "",
+  "description": "LibLynx API schema",
   "id": "http://connect.liblynx.com/schema#",
   "links": [
     {
-      "href": "https://connect.liblynx.com/api",
+      "href": "https://connect.liblynx.com",
       "rel": "self"
-    },
-    {
-      "href": "/schema",
-      "method": "GET",
-      "rel": "self",
-      "targetSchema": {
-        "additionalProperties": true
-      }
     }
   ],
   "title": "LibLynx API"

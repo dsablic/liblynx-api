@@ -1,0 +1,11 @@
+{
+  "description": "LibLynx API schema",
+  "id": "http://connect.liblynx.com/schema#",
+  "links": [
+    {
+      "href": "https://connect.liblynx.com",
+      "rel": "self"
+    }
+  ],
+  "title": "LibLynx API"
+}

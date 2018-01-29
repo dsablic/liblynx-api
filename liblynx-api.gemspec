@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'bundler'
   gem.add_development_dependency 'rake', '< 11.0'
   gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'prmd'
 
   gem.add_dependency 'heroics'
   gem.add_dependency 'moneta'

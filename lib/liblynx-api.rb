@@ -5,8 +5,12 @@ require 'liblynx-api/client'
 require 'liblynx-api/version'
 
 module LibLynxAPI
-  def self.fetch_oauth_token(id, secret)
-    #client = connect(secret, user: id, url: 'https://connect.liblynx.com/oauth/v2/token')
-    #client.post(body: 'grant_type=client_credentials')
+  def self.connect_oauth2(id, secret)
+    client = connect(secret, user: id)
+    token = client
+      .token
+      .create(grant_type: :client_credentials)
+      .dig('access_token')
+    connect_oauth(token)
   end
 end

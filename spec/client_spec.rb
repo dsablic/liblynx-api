@@ -1,15 +1,11 @@
 require 'liblynx-api'
 
 describe 'The generated liblynx api client' do
-  it 'can obtain the oauth token' do
-    expect(token).not_to be_empty
-  end
-
-  def token
-    @token ||= LibLynxAPI.fetch_oauth_token(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
+  it 'can connect' do
+    expect { client }.not_to raise_error
   end
 
   def client
-    @client ||= LibLynxAPI.connect_oauth(token)
+    @client ||= LibLynxAPI.connect_oauth2(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
   end
 end
