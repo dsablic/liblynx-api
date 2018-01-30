@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Identification",
+  "description": "",
+  "stability": "prototype",
+  "strictProperties": true,
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "id": {
+      "description": "unique identifier of identification",
+      "readOnly": true,
+      "format": "uuid",
+      "type": [
+        "string"
+      ]
+    },
+    "identity": {
+      "anyOf": [
+        {
+          "$ref": "/schemata/identification#/definitions/id"
+        }
+      ]
+    },
+    "created": {
+      "description": "when identification was created",
+      "format": "date-time",
+      "type": [
+        "string"
+      ]
+    },
+    "email": {
+      "description": "user email address",
+      "format": "email",
+      "type": [
+        "string"
+      ]
+    },
+    "url": {
+      "description": "callback url",
+      "format": "url",
+      "type": [
+        "string"
+      ]
+    },
+    "ip": {
+      "description": "ip address",
+      "format": "ip",
+      "type": [
+        "string"
+      ]
+    },
+    "user_agent": {
+      "description": "user agent",
+      "type": [
+        "string"
+      ]
+    }
+  },
+  "links": [
+    {
+      "description": "create a new identification resource to try and identify an account to link a new session with",
+      "href": "/api/identifications",
+      "method": "POST",
+      "rel": "create",
+      "schema": {
+        "properties": {
+          "email": {
+            "$ref": "#/definitions/account/definitions/email"
+          },
+          "ip": {
+            "$ref": "#/definitions/account/definitions/ip"
+          },
+          "user_agent": {
+            "$ref": "#/definitions/account/definitions/user_agent"
+          },
+          "url": {
+            "$ref": "#/definitions/account/definitions/url"
+          }
+        },
+        "required": [
+          "ip",
+          "user_agent",
+          "url"
+        ],
+        "type": [
+          "object"
+        ]
+      },
+      "title": "Create"
+    },
+    {
+      "description": "retrieve a single identification object",
+      "href": "/api/identifications/{(%2Fschemata%2Fidentification%23%2Fdefinitions%2Fidentity)}",
+      "method": "GET",
+      "rel": "self",
+      "title": "Info"
+    },
+    {
+      "description": "listing and search recent identifications",
+      "href": "/api/identifications",
+      "method": "GET",
+      "rel": "instances",
+      "title": "List"
+    }
+  ],
+  "properties": {
+    "created": {
+      "$ref": "/schemata/identification#/definitions/created_at"
+    },
+    "id": {
+      "$ref": "/schemata/identification#/definitions/id"
+    }
+  },
+  "id": "schemata/identification"
+}

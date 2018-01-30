@@ -83,7 +83,7 @@ module LibLynxAPI
 
   # Get the default options.
   def self.default_options
-    default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/0.0.1"}
+    default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/0.0.2"}
     {
       default_headers: default_headers,
       url:             "https://connect.liblynx.com"
@@ -98,6 +98,20 @@ module LibLynxAPI
       @client = client
     end
 
+    # FIXME
+    #
+    # @return [Account]
+    def account
+      @account_resource ||= Account.new(@client)
+    end
+
+    # 
+    #
+    # @return [Identification]
+    def identification
+      @identification_resource ||= Identification.new(@client)
+    end
+
     # 
     #
     # @return [Token]
@@ -107,6 +121,59 @@ module LibLynxAPI
   end
 
   private
+
+  # FIXME
+  class Account
+    def initialize(client)
+      @client = client
+    end
+
+    # Info for existing account.
+    #
+    # @param account_id: unique identifier of account
+    def info(account_id)
+      @client.account.info(account_id)
+    end
+
+    # List existing accounts.
+    def list()
+      @client.account.list()
+    end
+
+    # Update an existing account.
+    #
+    # @param account_id: unique identifier of account
+    # @param body: the object to pass as the request payload
+    def update(account_id, body = {})
+      @client.account.update(account_id, body)
+    end
+  end
+
+  # 
+  class Identification
+    def initialize(client)
+      @client = client
+    end
+
+    # create a new identification resource to try and identify an account to link a new session with
+    #
+    # @param body: the object to pass as the request payload
+    def create(body = {})
+      @client.identification.create(body)
+    end
+
+    # retrieve a single identification object
+    #
+    # @param identification_id: unique identifier of identification
+    def info(identification_id)
+      @client.identification.info(identification_id)
+    end
+
+    # listing and search recent identifications
+    def list()
+      @client.identification.list()
+    end
+  end
 
   # 
   class Token
@@ -129,6 +196,214 @@ module LibLynxAPI
     "object"
   ],
   "definitions": {
+    "account": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "FIXME - Account",
+      "description": "FIXME",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of account",
+          "readOnly": true,
+          "format": "uuid",
+          "type": [
+            "string"
+          ]
+        },
+        "account_name": {
+          "description": "unique name of account",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/account/definitions/id"
+            }
+          ]
+        },
+        "creation_date": {
+          "description": "when account was created",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "modified_date": {
+          "description": "when account was updated",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Info for existing account.",
+          "href": "/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        },
+        {
+          "description": "List existing accounts.",
+          "href": "/api/accounts",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        },
+        {
+          "description": "Update an existing account.",
+          "href": "/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
+          "method": "PATCH",
+          "rel": "update",
+          "schema": {
+            "properties": {
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Update"
+        }
+      ],
+      "properties": {
+        "created_at": {
+          "$ref": "#/definitions/account/definitions/created_date"
+        },
+        "id": {
+          "$ref": "#/definitions/account/definitions/id"
+        },
+        "name": {
+          "$ref": "#/definitions/account/definitions/account_name"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/account/definitions/modified_date"
+        }
+      }
+    },
+    "identification": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Identification",
+      "description": "",
+      "stability": "prototype",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of identification",
+          "readOnly": true,
+          "format": "uuid",
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/identification/definitions/id"
+            }
+          ]
+        },
+        "created": {
+          "description": "when identification was created",
+          "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "email": {
+          "description": "user email address",
+          "format": "email",
+          "type": [
+            "string"
+          ]
+        },
+        "url": {
+          "description": "callback url",
+          "format": "url",
+          "type": [
+            "string"
+          ]
+        },
+        "ip": {
+          "description": "ip address",
+          "format": "ip",
+          "type": [
+            "string"
+          ]
+        },
+        "user_agent": {
+          "description": "user agent",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "create a new identification resource to try and identify an account to link a new session with",
+          "href": "/api/identifications",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "email": {
+                "$ref": "#/definitions/account/definitions/email"
+              },
+              "ip": {
+                "$ref": "#/definitions/account/definitions/ip"
+              },
+              "user_agent": {
+                "$ref": "#/definitions/account/definitions/user_agent"
+              },
+              "url": {
+                "$ref": "#/definitions/account/definitions/url"
+              }
+            },
+            "required": [
+              "ip",
+              "user_agent",
+              "url"
+            ],
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "retrieve a single identification object",
+          "href": "/api/identifications/{(%23%2Fdefinitions%2Fidentification%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        },
+        {
+          "description": "listing and search recent identifications",
+          "href": "/api/identifications",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        }
+      ],
+      "properties": {
+        "created": {
+          "$ref": "#/definitions/identification/definitions/created_at"
+        },
+        "id": {
+          "$ref": "#/definitions/identification/definitions/id"
+        }
+      }
+    },
     "token": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "OAuth2 token",
@@ -139,13 +414,6 @@ module LibLynxAPI
         "object"
       ],
       "definitions": {
-        "grant_type": {
-          "description": "Token grant type",
-          "readOnly": true,
-          "type": [
-            "string"
-          ]
-        }
       },
       "links": [
         {
@@ -156,9 +424,6 @@ module LibLynxAPI
           "rel": "create",
           "schema": {
             "properties": {
-              "grant_type": {
-                "$ref": "#/definitions/token/definitions/name"
-              }
             },
             "type": [
               "object"
@@ -168,13 +433,16 @@ module LibLynxAPI
         }
       ],
       "properties": {
-        "grant_type": {
-          "$ref": "#/definitions/token/definitions/name"
-        }
       }
     }
   },
   "properties": {
+    "account": {
+      "$ref": "#/definitions/account"
+    },
+    "identification": {
+      "$ref": "#/definitions/identification"
+    },
     "token": {
       "$ref": "#/definitions/token"
     }
