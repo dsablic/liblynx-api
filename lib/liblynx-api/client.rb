@@ -98,7 +98,7 @@ module LibLynxAPI
       @client = client
     end
 
-    # FIXME
+    # 
     #
     # @return [Account]
     def account
@@ -122,7 +122,7 @@ module LibLynxAPI
 
   private
 
-  # FIXME
+  # 
   class Account
     def initialize(client)
       @client = client
@@ -168,11 +168,6 @@ module LibLynxAPI
     def info(identification_id)
       @client.identification.info(identification_id)
     end
-
-    # listing and search recent identifications
-    def list()
-      @client.identification.list()
-    end
   end
 
   # 
@@ -198,9 +193,9 @@ module LibLynxAPI
   "definitions": {
     "account": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "FIXME - Account",
-      "description": "FIXME",
-      "stability": "prototype",
+      "title": "Account",
+      "description": "",
+      "stability": "production",
       "strictProperties": true,
       "type": [
         "object"
@@ -292,7 +287,7 @@ module LibLynxAPI
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Identification",
       "description": "",
-      "stability": "prototype",
+      "stability": "production",
       "strictProperties": true,
       "type": [
         "object"
@@ -386,13 +381,6 @@ module LibLynxAPI
           "method": "GET",
           "rel": "self",
           "title": "Info"
-        },
-        {
-          "description": "listing and search recent identifications",
-          "href": "/api/identifications",
-          "method": "GET",
-          "rel": "instances",
-          "title": "List"
         }
       ],
       "properties": {
@@ -408,7 +396,7 @@ module LibLynxAPI
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "OAuth2 token",
       "description": "",
-      "stability": "prototype",
+      "stability": "production",
       "strictProperties": true,
       "type": [
         "object"

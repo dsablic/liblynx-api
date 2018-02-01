@@ -17,10 +17,6 @@ describe 'The generated liblynx api client' do
     expect(client.account.list()).to match(hash_including('accounts'))
   end
 
-  it 'can get a specific account' do
-    puts client.account.info(id_resource.dig('user_institution', 'id'))
-  end
-
   def id_resource
     @id_resource ||= client.identification.create(
       user_agent: 'Some agent',

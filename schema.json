@@ -6,9 +6,9 @@
   "definitions": {
     "account": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
-      "title": "FIXME - Account",
-      "description": "FIXME",
-      "stability": "prototype",
+      "title": "Account",
+      "description": "",
+      "stability": "production",
       "strictProperties": true,
       "type": [
         "object"
@@ -100,7 +100,7 @@
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Identification",
       "description": "",
-      "stability": "prototype",
+      "stability": "production",
       "strictProperties": true,
       "type": [
         "object"
@@ -194,13 +194,6 @@
           "method": "GET",
           "rel": "self",
           "title": "Info"
-        },
-        {
-          "description": "listing and search recent identifications",
-          "href": "/api/identifications",
-          "method": "GET",
-          "rel": "instances",
-          "title": "List"
         }
       ],
       "properties": {
@@ -216,7 +209,7 @@
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "OAuth2 token",
       "description": "",
-      "stability": "prototype",
+      "stability": "production",
       "strictProperties": true,
       "type": [
         "object"

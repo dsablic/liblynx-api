@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/hyper-schema",
-  "title": "FIXME - Account",
-  "description": "FIXME",
-  "stability": "prototype",
+  "title": "Account",
+  "description": "",
+  "stability": "production",
   "strictProperties": true,
   "type": [
     "object"
