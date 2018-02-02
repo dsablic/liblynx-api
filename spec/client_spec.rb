@@ -6,7 +6,7 @@ describe 'The generated liblynx api client' do
   end
 
   it 'can create new identification resource' do
-    expect(id_resource).to match(hash_including('user_institution' => hash_including('id')))
+    expect(id_resource).to match(hash_including('target_account' => hash_including('publisher_reference')))
   end
 
   it 'can get the identification resource info' do
@@ -14,7 +14,7 @@ describe 'The generated liblynx api client' do
   end
 
   it 'can get list the accounts' do
-    expect(client.account.list()).to match(hash_including('accounts'))
+    expect(client.account.list).to match(hash_including('accounts'))
   end
 
   def id_resource

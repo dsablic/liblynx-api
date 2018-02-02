@@ -24,14 +24,11 @@
       ]
     },
     "identity": {
-      "anyOf": [
-        {
-          "$ref": "/schemata/account#/definitions/id"
-        }
-      ]
+      "$ref": "/schemata/account#/definitions/id"
     },
     "creation_date": {
       "description": "when account was created",
+      "readOnly": true,
       "format": "date-time",
       "type": [
         "string"
@@ -39,7 +36,14 @@
     },
     "modified_date": {
       "description": "when account was updated",
+      "readOnly": true,
       "format": "date-time",
+      "type": [
+        "string"
+      ]
+    },
+    "publisher_reference": {
+      "description": "publisher reference",
       "type": [
         "string"
       ]
@@ -58,6 +62,16 @@
       "href": "/api/accounts",
       "method": "GET",
       "rel": "instances",
+      "targetSchema": {
+        "properties": {
+          "accounts": {
+            "example" : [],
+            "type": [
+              "array"
+            ]
+          }
+        }
+      },
       "title": "List"
     },
     {
@@ -66,8 +80,7 @@
       "method": "PATCH",
       "rel": "update",
       "schema": {
-        "properties": {
-        },
+        "properties": {},
         "type": [
           "object"
         ]
@@ -77,13 +90,16 @@
   ],
   "properties": {
     "created_at": {
-      "$ref": "/schemata/account#/definitions/created_date"
+      "$ref": "/schemata/account#/definitions/creation_date"
     },
     "id": {
       "$ref": "/schemata/account#/definitions/id"
     },
     "name": {
       "$ref": "/schemata/account#/definitions/account_name"
+    },
+    "publisher_reference": {
+      "$ref": "/schemata/account#/definitions/publisher_reference"
     },
     "updated_at": {
       "$ref": "/schemata/account#/definitions/modified_date"

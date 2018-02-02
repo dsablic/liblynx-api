@@ -17,11 +17,7 @@
       ]
     },
     "identity": {
-      "anyOf": [
-        {
-          "$ref": "/schemata/identification#/definitions/id"
-        }
-      ]
+      "$ref": "/schemata/identification#/definitions/id"
     },
     "created": {
       "description": "when identification was created",
@@ -39,14 +35,14 @@
     },
     "url": {
       "description": "callback url",
-      "format": "url",
+      "format": "uri",
       "type": [
         "string"
       ]
     },
     "ip": {
       "description": "ip address",
-      "format": "ip",
+      "format": "ipv4",
       "type": [
         "string"
       ]
@@ -67,16 +63,16 @@
       "schema": {
         "properties": {
           "email": {
-            "$ref": "#/definitions/account/definitions/email"
+            "$ref": "/schemata/identification#/definitions/email"
           },
           "ip": {
-            "$ref": "#/definitions/account/definitions/ip"
+            "$ref": "/schemata/identification#/definitions/ip"
           },
           "user_agent": {
-            "$ref": "#/definitions/account/definitions/user_agent"
+            "$ref": "/schemata/identification#/definitions/user_agent"
           },
           "url": {
-            "$ref": "#/definitions/account/definitions/url"
+            "$ref": "/schemata/identification#/definitions/url"
           }
         },
         "required": [
@@ -100,7 +96,7 @@
   ],
   "properties": {
     "created": {
-      "$ref": "/schemata/identification#/definitions/created_at"
+      "$ref": "/schemata/identification#/definitions/created"
     },
     "id": {
       "$ref": "/schemata/identification#/definitions/id"

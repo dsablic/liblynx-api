@@ -30,14 +30,11 @@
           ]
         },
         "identity": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/account/definitions/id"
-            }
-          ]
+          "$ref": "#/definitions/account/definitions/id"
         },
         "creation_date": {
           "description": "when account was created",
+          "readOnly": true,
           "format": "date-time",
           "type": [
             "string"
@@ -45,7 +42,14 @@
         },
         "modified_date": {
           "description": "when account was updated",
+          "readOnly": true,
           "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "publisher_reference": {
+          "description": "publisher reference",
           "type": [
             "string"
           ]
@@ -64,6 +68,17 @@
           "href": "/api/accounts",
           "method": "GET",
           "rel": "instances",
+          "targetSchema": {
+            "properties": {
+              "accounts": {
+                "example": [
+                ],
+                "type": [
+                  "array"
+                ]
+              }
+            }
+          },
           "title": "List"
         },
         {
@@ -83,13 +98,16 @@
       ],
       "properties": {
         "created_at": {
-          "$ref": "#/definitions/account/definitions/created_date"
+          "$ref": "#/definitions/account/definitions/creation_date"
         },
         "id": {
           "$ref": "#/definitions/account/definitions/id"
         },
         "name": {
           "$ref": "#/definitions/account/definitions/account_name"
+        },
+        "publisher_reference": {
+          "$ref": "#/definitions/account/definitions/publisher_reference"
         },
         "updated_at": {
           "$ref": "#/definitions/account/definitions/modified_date"
@@ -115,11 +133,7 @@
           ]
         },
         "identity": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/identification/definitions/id"
-            }
-          ]
+          "$ref": "#/definitions/identification/definitions/id"
         },
         "created": {
           "description": "when identification was created",
@@ -137,14 +151,14 @@
         },
         "url": {
           "description": "callback url",
-          "format": "url",
+          "format": "uri",
           "type": [
             "string"
           ]
         },
         "ip": {
           "description": "ip address",
-          "format": "ip",
+          "format": "ipv4",
           "type": [
             "string"
           ]
@@ -165,16 +179,16 @@
           "schema": {
             "properties": {
               "email": {
-                "$ref": "#/definitions/account/definitions/email"
+                "$ref": "#/definitions/identification/definitions/email"
               },
               "ip": {
-                "$ref": "#/definitions/account/definitions/ip"
+                "$ref": "#/definitions/identification/definitions/ip"
               },
               "user_agent": {
-                "$ref": "#/definitions/account/definitions/user_agent"
+                "$ref": "#/definitions/identification/definitions/user_agent"
               },
               "url": {
-                "$ref": "#/definitions/account/definitions/url"
+                "$ref": "#/definitions/identification/definitions/url"
               }
             },
             "required": [
@@ -198,7 +212,7 @@
       ],
       "properties": {
         "created": {
-          "$ref": "#/definitions/identification/definitions/created_at"
+          "$ref": "#/definitions/identification/definitions/created"
         },
         "id": {
           "$ref": "#/definitions/identification/definitions/id"
@@ -215,6 +229,23 @@
         "object"
       ],
       "definitions": {
+        "account_token": {
+          "description": "unique identifier of identification",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/token/definitions/account_token"
+        },
+        "grant_type": {
+          "description": "grant_type",
+          "example": "client_credentials",
+          "type": [
+            "string"
+          ]
+        }
       },
       "links": [
         {
@@ -225,6 +256,19 @@
           "rel": "create",
           "schema": {
             "properties": {
+              "grant_type": {
+                "$ref": "#/definitions/token/definitions/grant_type"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "targetSchema": {
+            "properties": {
+              "account_token": {
+                "$ref": "#/definitions/token/definitions/account_token"
+              }
             },
             "type": [
               "object"
@@ -234,6 +278,12 @@
         }
       ],
       "properties": {
+        "account_token": {
+          "$ref": "#/definitions/token/definitions/account_token"
+        },
+        "grant_type": {
+          "$ref": "#/definitions/token/definitions/grant_type"
+        }
       }
     }
   },

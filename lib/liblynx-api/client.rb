@@ -130,9 +130,9 @@ module LibLynxAPI
 
     # Info for existing account.
     #
-    # @param account_id: unique identifier of account
-    def info(account_id)
-      @client.account.info(account_id)
+    # @param account_identity: 
+    def info(account_identity)
+      @client.account.info(account_identity)
     end
 
     # List existing accounts.
@@ -142,10 +142,10 @@ module LibLynxAPI
 
     # Update an existing account.
     #
-    # @param account_id: unique identifier of account
+    # @param account_identity: 
     # @param body: the object to pass as the request payload
-    def update(account_id, body = {})
-      @client.account.update(account_id, body)
+    def update(account_identity, body = {})
+      @client.account.update(account_identity, body)
     end
   end
 
@@ -164,9 +164,9 @@ module LibLynxAPI
 
     # retrieve a single identification object
     #
-    # @param identification_id: unique identifier of identification
-    def info(identification_id)
-      @client.identification.info(identification_id)
+    # @param identification_identity: 
+    def info(identification_identity)
+      @client.identification.info(identification_identity)
     end
   end
 
@@ -217,14 +217,11 @@ module LibLynxAPI
           ]
         },
         "identity": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/account/definitions/id"
-            }
-          ]
+          "$ref": "#/definitions/account/definitions/id"
         },
         "creation_date": {
           "description": "when account was created",
+          "readOnly": true,
           "format": "date-time",
           "type": [
             "string"
@@ -232,7 +229,14 @@ module LibLynxAPI
         },
         "modified_date": {
           "description": "when account was updated",
+          "readOnly": true,
           "format": "date-time",
+          "type": [
+            "string"
+          ]
+        },
+        "publisher_reference": {
+          "description": "publisher reference",
           "type": [
             "string"
           ]
@@ -251,6 +255,18 @@ module LibLynxAPI
           "href": "/api/accounts",
           "method": "GET",
           "rel": "instances",
+          "targetSchema": {
+            "properties": {
+              "accounts": {
+                "example": [
+
+                ],
+                "type": [
+                  "array"
+                ]
+              }
+            }
+          },
           "title": "List"
         },
         {
@@ -270,13 +286,16 @@ module LibLynxAPI
       ],
       "properties": {
         "created_at": {
-          "$ref": "#/definitions/account/definitions/created_date"
+          "$ref": "#/definitions/account/definitions/creation_date"
         },
         "id": {
           "$ref": "#/definitions/account/definitions/id"
         },
         "name": {
           "$ref": "#/definitions/account/definitions/account_name"
+        },
+        "publisher_reference": {
+          "$ref": "#/definitions/account/definitions/publisher_reference"
         },
         "updated_at": {
           "$ref": "#/definitions/account/definitions/modified_date"
@@ -302,11 +321,7 @@ module LibLynxAPI
           ]
         },
         "identity": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/identification/definitions/id"
-            }
-          ]
+          "$ref": "#/definitions/identification/definitions/id"
         },
         "created": {
           "description": "when identification was created",
@@ -324,14 +339,14 @@ module LibLynxAPI
         },
         "url": {
           "description": "callback url",
-          "format": "url",
+          "format": "uri",
           "type": [
             "string"
           ]
         },
         "ip": {
           "description": "ip address",
-          "format": "ip",
+          "format": "ipv4",
           "type": [
             "string"
           ]
@@ -352,16 +367,16 @@ module LibLynxAPI
           "schema": {
             "properties": {
               "email": {
-                "$ref": "#/definitions/account/definitions/email"
+                "$ref": "#/definitions/identification/definitions/email"
               },
               "ip": {
-                "$ref": "#/definitions/account/definitions/ip"
+                "$ref": "#/definitions/identification/definitions/ip"
               },
               "user_agent": {
-                "$ref": "#/definitions/account/definitions/user_agent"
+                "$ref": "#/definitions/identification/definitions/user_agent"
               },
               "url": {
-                "$ref": "#/definitions/account/definitions/url"
+                "$ref": "#/definitions/identification/definitions/url"
               }
             },
             "required": [
@@ -385,7 +400,7 @@ module LibLynxAPI
       ],
       "properties": {
         "created": {
-          "$ref": "#/definitions/identification/definitions/created_at"
+          "$ref": "#/definitions/identification/definitions/created"
         },
         "id": {
           "$ref": "#/definitions/identification/definitions/id"
@@ -402,6 +417,23 @@ module LibLynxAPI
         "object"
       ],
       "definitions": {
+        "account_token": {
+          "description": "unique identifier of identification",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/token/definitions/account_token"
+        },
+        "grant_type": {
+          "description": "grant_type",
+          "example": "client_credentials",
+          "type": [
+            "string"
+          ]
+        }
       },
       "links": [
         {
@@ -412,6 +444,19 @@ module LibLynxAPI
           "rel": "create",
           "schema": {
             "properties": {
+              "grant_type": {
+                "$ref": "#/definitions/token/definitions/grant_type"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "targetSchema": {
+            "properties": {
+              "account_token": {
+                "$ref": "#/definitions/token/definitions/account_token"
+              }
             },
             "type": [
               "object"
@@ -421,6 +466,12 @@ module LibLynxAPI
         }
       ],
       "properties": {
+        "account_token": {
+          "$ref": "#/definitions/token/definitions/account_token"
+        },
+        "grant_type": {
+          "$ref": "#/definitions/token/definitions/grant_type"
+        }
       }
     }
   },
