@@ -21,15 +21,21 @@
         "string"
       ]
     },
-    "email_domains" : {
-      "description": "email domains",
-      "example" : [],
+    "email_domains": {
+      "description": "cr separated email domains",
+      "example": "*.somedomain.com\nalt.somedomain2.com",
       "type": [
-        "array"
+        "string"
       ]
     },
     "enable_saml": {
       "description": "saml enabled",
+      "type": [
+        "boolean"
+      ]
+    },
+    "enable_shibboleth": {
+      "description": "shibboleth enabled",
       "type": [
         "boolean"
       ]
@@ -68,7 +74,7 @@
       "rel": "create",
       "schema": {
         "properties": {
-          "account_name" : {
+          "account_name": {
             "$ref": "/schemata/account#/definitions/account_name"
           },
           "publisher_reference": {
@@ -79,8 +85,14 @@
           },
           "enable_saml": {
             "$ref": "/schemata/account#/definitions/enable_saml"
+          },
+          "enable_shibboleth": {
+            "$ref": "/schemata/account#/definitions/enable_shibboleth"
           }
         },
+        "required": [
+          "account_name"
+        ],
         "type": [
           "object"
         ]
@@ -92,7 +104,8 @@
       "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}",
       "method": "DELETE",
       "rel": "destroy",
-      "title": "Delete"
+      "title": "Delete",
+      "targetSchema": {}
     },
     {
       "description": "Info for existing account.",
@@ -109,7 +122,26 @@
       "targetSchema": {
         "properties": {
           "accounts": {
-            "example": [],
+            "properties": {
+              "id": {
+                "$ref": "/schemata/account#/definitions/id"
+              },
+              "account_name": {
+                "$ref": "/schemata/account#/definitions/account_name"
+              },
+              "publisher_reference": {
+                "$ref": "/schemata/account#/definitions/publisher_reference"
+              },
+              "email_domains": {
+                "$ref": "/schemata/account#/definitions/email_domains"
+              },
+              "enable_saml": {
+                "$ref": "/schemata/account#/definitions/enable_saml"
+              },
+              "enable_shibboleth": {
+                "$ref": "/schemata/account#/definitions/enable_shibboleth"
+              }
+            },
             "type": [
               "array"
             ]
@@ -124,7 +156,23 @@
       "method": "PUT",
       "rel": "update",
       "schema": {
-        "properties": {},
+        "properties": {
+          "account_name": {
+            "$ref": "/schemata/account#/definitions/account_name"
+          },
+          "publisher_reference": {
+            "$ref": "/schemata/account#/definitions/publisher_reference"
+          },
+          "email_domains": {
+            "$ref": "/schemata/account#/definitions/email_domains"
+          },
+          "enable_saml": {
+            "$ref": "/schemata/account#/definitions/enable_saml"
+          },
+          "enable_shibboleth": {
+            "$ref": "/schemata/account#/definitions/enable_shibboleth"
+          }
+        },
         "type": [
           "object"
         ]
@@ -147,6 +195,9 @@
     },
     "enable_saml": {
       "$ref": "/schemata/account#/definitions/enable_saml"
+    },
+    "enable_shibboleth": {
+      "$ref": "/schemata/account#/definitions/enable_shibboleth"
     },
     "email_domains": {
       "$ref": "/schemata/account#/definitions/email_domains"

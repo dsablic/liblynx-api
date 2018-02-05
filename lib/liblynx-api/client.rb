@@ -274,16 +274,20 @@ module LibLynxAPI
           ]
         },
         "email_domains": {
-          "description": "email domains",
-          "example": [
-
-          ],
+          "description": "cr separated email domains",
+          "example": "*.somedomain.com\nalt.somedomain2.com",
           "type": [
-            "array"
+            "string"
           ]
         },
         "enable_saml": {
           "description": "saml enabled",
+          "type": [
+            "boolean"
+          ]
+        },
+        "enable_shibboleth": {
+          "description": "shibboleth enabled",
           "type": [
             "boolean"
           ]
@@ -333,8 +337,14 @@ module LibLynxAPI
               },
               "enable_saml": {
                 "$ref": "#/definitions/account/definitions/enable_saml"
+              },
+              "enable_shibboleth": {
+                "$ref": "#/definitions/account/definitions/enable_shibboleth"
               }
             },
+            "required": [
+              "account_name"
+            ],
             "type": [
               "object"
             ]
@@ -346,7 +356,9 @@ module LibLynxAPI
           "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
           "method": "DELETE",
           "rel": "destroy",
-          "title": "Delete"
+          "title": "Delete",
+          "targetSchema": {
+          }
         },
         {
           "description": "Info for existing account.",
@@ -363,9 +375,26 @@ module LibLynxAPI
           "targetSchema": {
             "properties": {
               "accounts": {
-                "example": [
-
-                ],
+                "properties": {
+                  "id": {
+                    "$ref": "#/definitions/account/definitions/id"
+                  },
+                  "account_name": {
+                    "$ref": "#/definitions/account/definitions/account_name"
+                  },
+                  "publisher_reference": {
+                    "$ref": "#/definitions/account/definitions/publisher_reference"
+                  },
+                  "email_domains": {
+                    "$ref": "#/definitions/account/definitions/email_domains"
+                  },
+                  "enable_saml": {
+                    "$ref": "#/definitions/account/definitions/enable_saml"
+                  },
+                  "enable_shibboleth": {
+                    "$ref": "#/definitions/account/definitions/enable_shibboleth"
+                  }
+                },
                 "type": [
                   "array"
                 ]
@@ -381,6 +410,21 @@ module LibLynxAPI
           "rel": "update",
           "schema": {
             "properties": {
+              "account_name": {
+                "$ref": "#/definitions/account/definitions/account_name"
+              },
+              "publisher_reference": {
+                "$ref": "#/definitions/account/definitions/publisher_reference"
+              },
+              "email_domains": {
+                "$ref": "#/definitions/account/definitions/email_domains"
+              },
+              "enable_saml": {
+                "$ref": "#/definitions/account/definitions/enable_saml"
+              },
+              "enable_shibboleth": {
+                "$ref": "#/definitions/account/definitions/enable_shibboleth"
+              }
             },
             "type": [
               "object"
@@ -404,6 +448,9 @@ module LibLynxAPI
         },
         "enable_saml": {
           "$ref": "#/definitions/account/definitions/enable_saml"
+        },
+        "enable_shibboleth": {
+          "$ref": "#/definitions/account/definitions/enable_shibboleth"
         },
         "email_domains": {
           "$ref": "#/definitions/account/definitions/email_domains"

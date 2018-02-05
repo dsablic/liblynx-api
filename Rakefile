@@ -15,6 +15,7 @@ namespace :schema do
   end
 
   Prmd::RakeTasks::Doc.new do |t|
+    t.options[:settings] = 'config.json'
     t.files = { 'schema.json' => 'api.md' }
   end
 end

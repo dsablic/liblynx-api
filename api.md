@@ -10,8 +10,9 @@ Stability: `production`
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **created_at** | *date-time* | when account was created | `"2015-01-01T12:00:00Z"` |
-| **email_domains** | *array* | email domains | `[]` |
+| **email_domains** | *string* | cr separated email domains | `"*.somedomain.com\nalt.somedomain2.com"` |
 | **enable_saml** | *boolean* | saml enabled | `true` |
+| **enable_shibboleth** | *boolean* | shibboleth enabled | `true` |
 | **id** | *integer* | unique identifier of account | `42` |
 | **name** | *string* | unique name of account | `"example"` |
 | **publisher_reference** | *string* | publisher reference | `"example"` |
@@ -25,13 +26,20 @@ Create a new account.
 POST /api/accounts
 ```
 
-#### Optional Parameters
+#### Required Parameters
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **account_name** | *string* | unique name of account | `"example"` |
-| **email_domains** | *array* | email domains | `[]` |
+
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **email_domains** | *string* | cr separated email domains | `"*.somedomain.com\nalt.somedomain2.com"` |
 | **enable_saml** | *boolean* | saml enabled | `true` |
+| **enable_shibboleth** | *boolean* | shibboleth enabled | `true` |
 | **publisher_reference** | *string* | publisher reference | `"example"` |
 
 
@@ -42,10 +50,9 @@ $ curl -n -X POST https://connect.liblynx.com/api/accounts \
   -d '{
   "account_name": "example",
   "publisher_reference": "example",
-  "email_domains": [
-
-  ],
-  "enable_saml": true
+  "email_domains": "*.somedomain.com\nalt.somedomain2.com",
+  "enable_saml": true,
+  "enable_shibboleth": true
 }' \
   -H "Content-Type: application/json"
 ```
@@ -64,9 +71,8 @@ HTTP/1.1 201 Created
   "name": "example",
   "publisher_reference": "example",
   "enable_saml": true,
-  "email_domains": [
-
-  ],
+  "enable_shibboleth": true,
+  "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "updated_at": "2015-01-01T12:00:00Z"
 }
 ```
@@ -95,17 +101,7 @@ HTTP/1.1 200 OK
 ```
 
 ```json
-{
-  "created_at": "2015-01-01T12:00:00Z",
-  "id": 42,
-  "name": "example",
-  "publisher_reference": "example",
-  "enable_saml": true,
-  "email_domains": [
-
-  ],
-  "updated_at": "2015-01-01T12:00:00Z"
-}
+null
 ```
 
 ### <a name="link-GET-account-/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}">Account Info</a>
@@ -137,9 +133,8 @@ HTTP/1.1 200 OK
   "name": "example",
   "publisher_reference": "example",
   "enable_saml": true,
-  "email_domains": [
-
-  ],
+  "enable_shibboleth": true,
+  "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "updated_at": "2015-01-01T12:00:00Z"
 }
 ```
@@ -168,9 +163,14 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "accounts": [
-
-  ]
+  "accounts": {
+    "id": 42,
+    "account_name": "example",
+    "publisher_reference": "example",
+    "email_domains": "*.somedomain.com\nalt.somedomain2.com",
+    "enable_saml": true,
+    "enable_shibboleth": true
+  }
 }
 ```
 
@@ -182,12 +182,27 @@ Update an existing account.
 PUT /accounts/{account_id}
 ```
 
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **account_name** | *string* | unique name of account | `"example"` |
+| **email_domains** | *string* | cr separated email domains | `"*.somedomain.com\nalt.somedomain2.com"` |
+| **enable_saml** | *boolean* | saml enabled | `true` |
+| **enable_shibboleth** | *boolean* | shibboleth enabled | `true` |
+| **publisher_reference** | *string* | publisher reference | `"example"` |
+
 
 #### Curl Example
 
 ```bash
 $ curl -n -X PUT https://connect.liblynx.com/accounts/$ACCOUNT_ID \
   -d '{
+  "account_name": "example",
+  "publisher_reference": "example",
+  "email_domains": "*.somedomain.com\nalt.somedomain2.com",
+  "enable_saml": true,
+  "enable_shibboleth": true
 }' \
   -H "Content-Type: application/json"
 ```
@@ -206,9 +221,8 @@ HTTP/1.1 200 OK
   "name": "example",
   "publisher_reference": "example",
   "enable_saml": true,
-  "email_domains": [
-
-  ],
+  "enable_shibboleth": true,
+  "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "updated_at": "2015-01-01T12:00:00Z"
 }
 ```
