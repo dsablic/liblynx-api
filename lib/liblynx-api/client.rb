@@ -83,7 +83,7 @@ module LibLynxAPI
 
   # Get the default options.
   def self.default_options
-    default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/0.0.2"}
+    default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/0.0.3"}
     {
       default_headers: default_headers,
       url:             "https://connect.liblynx.com"
@@ -114,6 +114,13 @@ module LibLynxAPI
 
     # 
     #
+    # @return [Samlidp]
+    def samlidp
+      @samlidp_resource ||= Samlidp.new(@client)
+    end
+
+    # 
+    #
     # @return [Token]
     def token
       @token_resource ||= Token.new(@client)
@@ -126,6 +133,20 @@ module LibLynxAPI
   class Account
     def initialize(client)
       @client = client
+    end
+
+    # Create a new account.
+    #
+    # @param body: the object to pass as the request payload
+    def create(body = {})
+      @client.account.create(body)
+    end
+
+    # Delete an existing account.
+    #
+    # @param account_identity: 
+    def delete(account_identity)
+      @client.account.delete(account_identity)
     end
 
     # Info for existing account.
@@ -171,6 +192,44 @@ module LibLynxAPI
   end
 
   # 
+  class Samlidp
+    def initialize(client)
+      @client = client
+    end
+
+    # Create a new samlidp.
+    #
+    # @param account_identity: 
+    # @param body: the object to pass as the request payload
+    def create(account_identity, body = {})
+      @client.samlidp.create(account_identity, body)
+    end
+
+    # Delete an existing samlidp.
+    #
+    # @param account_identity: 
+    # @param samlidp_identity: 
+    def delete(account_identity, samlidp_identity)
+      @client.samlidp.delete(account_identity, samlidp_identity)
+    end
+
+    # Info for existing samlidp.
+    #
+    # @param account_identity: 
+    # @param samlidp_identity: 
+    def info(account_identity, samlidp_identity)
+      @client.samlidp.info(account_identity, samlidp_identity)
+    end
+
+    # List existing samlidps.
+    #
+    # @param account_identity: 
+    def list(account_identity)
+      @client.samlidp.list(account_identity)
+    end
+  end
+
+  # 
   class Token
     def initialize(client)
       @client = client
@@ -204,16 +263,29 @@ module LibLynxAPI
         "id": {
           "description": "unique identifier of account",
           "readOnly": true,
-          "format": "uuid",
           "type": [
-            "string"
+            "integer"
           ]
         },
         "account_name": {
           "description": "unique name of account",
-          "readOnly": true,
           "type": [
             "string"
+          ]
+        },
+        "email_domains": {
+          "description": "email domains",
+          "example": [
+
+          ],
+          "type": [
+            "array"
+          ]
+        },
+        "enable_saml": {
+          "description": "saml enabled",
+          "type": [
+            "boolean"
           ]
         },
         "identity": {
@@ -244,8 +316,41 @@ module LibLynxAPI
       },
       "links": [
         {
+          "description": "Create a new account.",
+          "href": "/api/accounts",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "account_name": {
+                "$ref": "#/definitions/account/definitions/account_name"
+              },
+              "publisher_reference": {
+                "$ref": "#/definitions/account/definitions/publisher_reference"
+              },
+              "email_domains": {
+                "$ref": "#/definitions/account/definitions/email_domains"
+              },
+              "enable_saml": {
+                "$ref": "#/definitions/account/definitions/enable_saml"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing account.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "title": "Delete"
+        },
+        {
           "description": "Info for existing account.",
-          "href": "/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
           "method": "GET",
           "rel": "self",
           "title": "Info"
@@ -272,7 +377,7 @@ module LibLynxAPI
         {
           "description": "Update an existing account.",
           "href": "/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
-          "method": "PATCH",
+          "method": "PUT",
           "rel": "update",
           "schema": {
             "properties": {
@@ -296,6 +401,12 @@ module LibLynxAPI
         },
         "publisher_reference": {
           "$ref": "#/definitions/account/definitions/publisher_reference"
+        },
+        "enable_saml": {
+          "$ref": "#/definitions/account/definitions/enable_saml"
+        },
+        "email_domains": {
+          "$ref": "#/definitions/account/definitions/email_domains"
         },
         "updated_at": {
           "$ref": "#/definitions/account/definitions/modified_date"
@@ -407,6 +518,80 @@ module LibLynxAPI
         }
       }
     },
+    "samlidp": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Samlidp",
+      "description": "",
+      "stability": "production",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of samlidp",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "descriptor_url": {
+          "description": "saml descriptor url",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/samlidp/definitions/id"
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new samlidp.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing samlidp.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps/{(%23%2Fdefinitions%2Fsamlidp%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "title": "Delete"
+        },
+        {
+          "description": "Info for existing samlidp.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps/{(%23%2Fdefinitions%2Fsamlidp%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        },
+        {
+          "description": "List existing samlidps.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/samlidp/definitions/id"
+        },
+        "descriptor_url": {
+          "$ref": "#/definitions/samlidp/definitions/descriptor_url"
+        }
+      }
+    },
     "token": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "OAuth2 token",
@@ -481,6 +666,9 @@ module LibLynxAPI
     },
     "identification": {
       "$ref": "#/definitions/identification"
+    },
+    "samlidp": {
+      "$ref": "#/definitions/samlidp"
     },
     "token": {
       "$ref": "#/definitions/token"

@@ -17,16 +17,28 @@
         "id": {
           "description": "unique identifier of account",
           "readOnly": true,
-          "format": "uuid",
           "type": [
-            "string"
+            "integer"
           ]
         },
         "account_name": {
           "description": "unique name of account",
-          "readOnly": true,
           "type": [
             "string"
+          ]
+        },
+        "email_domains": {
+          "description": "email domains",
+          "example": [
+          ],
+          "type": [
+            "array"
+          ]
+        },
+        "enable_saml": {
+          "description": "saml enabled",
+          "type": [
+            "boolean"
           ]
         },
         "identity": {
@@ -57,8 +69,41 @@
       },
       "links": [
         {
+          "description": "Create a new account.",
+          "href": "/api/accounts",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "account_name": {
+                "$ref": "#/definitions/account/definitions/account_name"
+              },
+              "publisher_reference": {
+                "$ref": "#/definitions/account/definitions/publisher_reference"
+              },
+              "email_domains": {
+                "$ref": "#/definitions/account/definitions/email_domains"
+              },
+              "enable_saml": {
+                "$ref": "#/definitions/account/definitions/enable_saml"
+              }
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing account.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "title": "Delete"
+        },
+        {
           "description": "Info for existing account.",
-          "href": "/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
           "method": "GET",
           "rel": "self",
           "title": "Info"
@@ -84,7 +129,7 @@
         {
           "description": "Update an existing account.",
           "href": "/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
-          "method": "PATCH",
+          "method": "PUT",
           "rel": "update",
           "schema": {
             "properties": {
@@ -108,6 +153,12 @@
         },
         "publisher_reference": {
           "$ref": "#/definitions/account/definitions/publisher_reference"
+        },
+        "enable_saml": {
+          "$ref": "#/definitions/account/definitions/enable_saml"
+        },
+        "email_domains": {
+          "$ref": "#/definitions/account/definitions/email_domains"
         },
         "updated_at": {
           "$ref": "#/definitions/account/definitions/modified_date"
@@ -219,6 +270,80 @@
         }
       }
     },
+    "samlidp": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Samlidp",
+      "description": "",
+      "stability": "production",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of samlidp",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "descriptor_url": {
+          "description": "saml descriptor url",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/samlidp/definitions/id"
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new samlidp.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+            },
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing samlidp.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps/{(%23%2Fdefinitions%2Fsamlidp%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "title": "Delete"
+        },
+        {
+          "description": "Info for existing samlidp.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps/{(%23%2Fdefinitions%2Fsamlidp%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        },
+        {
+          "description": "List existing samlidps.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/samlidp/definitions/id"
+        },
+        "descriptor_url": {
+          "$ref": "#/definitions/samlidp/definitions/descriptor_url"
+        }
+      }
+    },
     "token": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "OAuth2 token",
@@ -293,6 +418,9 @@
     },
     "identification": {
       "$ref": "#/definitions/identification"
+    },
+    "samlidp": {
+      "$ref": "#/definitions/samlidp"
     },
     "token": {
       "$ref": "#/definitions/token"

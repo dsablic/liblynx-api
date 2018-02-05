@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Samlidp",
+  "description": "",
+  "stability": "production",
+  "strictProperties": true,
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "id": {
+      "description": "unique identifier of samlidp",
+      "readOnly": true,
+      "type": [
+        "integer"
+      ]
+    },
+    "descriptor_url": {
+      "description": "saml descriptor url",
+      "readOnly": true,
+      "type": [
+        "string"
+      ]
+    },
+    "identity": {
+      "$ref": "/schemata/samlidp#/definitions/id"
+    }
+  },
+  "links": [
+    {
+      "description": "Create a new samlidp.",
+      "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}/samlidps",
+      "method": "POST",
+      "rel": "create",
+      "schema": {
+        "properties": {},
+        "type": [
+          "object"
+        ]
+      },
+      "title": "Create"
+    },
+    {
+      "description": "Delete an existing samlidp.",
+      "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}/samlidps/{(%2Fschemata%2Fsamlidp%23%2Fdefinitions%2Fidentity)}",
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete"
+    },
+    {
+      "description": "Info for existing samlidp.",
+      "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}/samlidps/{(%2Fschemata%2Fsamlidp%23%2Fdefinitions%2Fidentity)}",
+      "method": "GET",
+      "rel": "self",
+      "title": "Info"
+    },
+    {
+      "description": "List existing samlidps.",
+      "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}/samlidps",
+      "method": "GET",
+      "rel": "instances",
+      "title": "List"
+    }
+  ],
+  "properties": {
+    "id": {
+      "$ref": "/schemata/samlidp#/definitions/id"
+    },
+    "descriptor_url": {
+      "$ref": "/schemata/samlidp#/definitions/descriptor_url"
+    }
+  },
+  "id": "schemata/samlidp"
+}
