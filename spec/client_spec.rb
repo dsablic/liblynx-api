@@ -28,17 +28,17 @@ describe 'The generated liblynx api client' do
 
   context 'saml account' do
     before(:context) do
-      @account = @client.account.create(@test_account_config)
-      @saml = { 'enable_shibboleth' => true }
+      @config = @test_account_config.merge('enable_saml' => true)
+      @account = @client.account.create(@config)
     end
 
     it 'can create a new account' do
-      expect(@account).to match(hash_including(@test_account_config))
+      expect(@account).to match(hash_including(@config))
     end
 
-    it 'can update an account (enable saml)' do
-      expect(@client.account.update(@account['id'], @test_account_config.merge(@saml)))
-        .to match(hash_including(@saml))
+    it 'can update an account' do
+      expect(@client.account.update(@account['id'], @config))
+        .to match(hash_including(@config))
     end
 
     it 'can add saml idp descriptor url to an account' do
@@ -53,35 +53,34 @@ describe 'The generated liblynx api client' do
 
       it 'can create new identification resource' do
         expect(@identification).to match(hash_including('target_account' =>
-          hash_including('publisher_reference' => @test_account_config['publisher_reference'])))
+          hash_including(@config.slice('publisher_reference'))))
       end
 
       it 'can get identification resource info' do
         expect(@client.identification.info(@identification['id'])).to match(@identification)
       end
-    end
 
-    it 'can delete an account' do
-      expect { @client.account.delete(@account['id']) }.not_to raise_error
+      it 'can delete an account' do
+        expect { @client.account.delete(@account['id']) }.not_to raise_error
+      end
     end
   end
 
   context 'shibboleth account' do
     before(:context) do
-      @account = @client.account.create(@test_account_config)
-      @shib = {
+      @config = @test_account_config.merge(
         'enable_shibboleth' => true,
-        'shibboleth_entity_id' => @test_shib_entity
-      }
+        'shibboleth_entity_id' => @test_shib_entity)
+      @account = @client.account.create(@config)
     end
 
     it 'can create a new account' do
-      expect(@account).to match(hash_including(@test_account_config))
+      expect(@account).to match(hash_including(@config))
     end
 
-    it 'can update an account (enable shibboleth)' do
-      expect(@client.account.update(@account['id'], @test_account_config.merge(@shib)))
-        .to match(hash_including(@shib))
+    it 'can update an account' do
+      expect(@client.account.update(@account['id'], @config))
+        .to match(hash_including(@config))
     end
 
     context 'identification' do
@@ -91,16 +90,16 @@ describe 'The generated liblynx api client' do
 
       it 'can create new identification resource' do
         expect(@identification).to match(hash_including('target_account' =>
-          hash_including('publisher_reference' => @test_account_config['publisher_reference'])))
+          hash_including(@config.slice('publisher_reference'))))
       end
 
       it 'can get identification resource info' do
         expect(@client.identification.info(@identification['id'])).to match(@identification)
       end
-    end
 
-    it 'can delete an account' do
-      expect { @client.account.delete(@account['id']) }.not_to raise_error
+      it 'can delete an account' do
+        expect { @client.account.delete(@account['id']) }.not_to raise_error
+      end
     end
   end
 end

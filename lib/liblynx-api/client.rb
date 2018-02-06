@@ -83,7 +83,7 @@ module LibLynxAPI
 
   # Get the default options.
   def self.default_options
-    default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/0.0.3"}
+    default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/0.0.4"}
     {
       default_headers: default_headers,
       url:             "https://connect.liblynx.com"
