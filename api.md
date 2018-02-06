@@ -174,12 +174,12 @@ HTTP/1.1 200 OK
 }
 ```
 
-### <a name="link-PUT-account-/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}">Account Update</a>
+### <a name="link-PUT-account-/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}">Account Update</a>
 
 Update an existing account.
 
 ```
-PUT /accounts/{account_id}
+PUT /api/accounts/{account_id}
 ```
 
 #### Optional Parameters
@@ -196,7 +196,7 @@ PUT /accounts/{account_id}
 #### Curl Example
 
 ```bash
-$ curl -n -X PUT https://connect.liblynx.com/accounts/$ACCOUNT_ID \
+$ curl -n -X PUT https://connect.liblynx.com/api/accounts/$ACCOUNT_ID \
   -d '{
   "account_name": "example",
   "publisher_reference": "example",

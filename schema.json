@@ -159,7 +159,7 @@
         },
         {
           "description": "Update an existing account.",
-          "href": "/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}",
           "method": "PUT",
           "rel": "update",
           "schema": {
