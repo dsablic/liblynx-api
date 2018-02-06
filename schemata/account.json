@@ -64,6 +64,13 @@
       "type": [
         "string"
       ]
+    },
+    "shibboleth_entity_id": {
+      "description": "shibboleth entity id",
+      "format": "uri",
+      "type": [
+        "string"
+      ]
     }
   },
   "links": [
@@ -88,6 +95,9 @@
           },
           "enable_shibboleth": {
             "$ref": "/schemata/account#/definitions/enable_shibboleth"
+          },
+          "shibboleth_entity_id": {
+            "$ref": "/schemata/account#/definitions/shibboleth_entity_id"
           }
         },
         "required": [
@@ -171,6 +181,9 @@
           },
           "enable_shibboleth": {
             "$ref": "/schemata/account#/definitions/enable_shibboleth"
+          },
+          "shibboleth_entity_id": {
+            "$ref": "/schemata/account#/definitions/shibboleth_entity_id"
           }
         },
         "type": [
@@ -204,6 +217,9 @@
     },
     "updated_at": {
       "$ref": "/schemata/account#/definitions/modified_date"
+    },
+    "shibboleth_entity_id": {
+      "$ref": "/schemata/account#/definitions/shibboleth_entity_id"
     }
   },
   "id": "schemata/account"

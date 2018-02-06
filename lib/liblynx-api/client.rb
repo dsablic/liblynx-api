@@ -316,6 +316,13 @@ module LibLynxAPI
           "type": [
             "string"
           ]
+        },
+        "shibboleth_entity_id": {
+          "description": "shibboleth entity id",
+          "format": "uri",
+          "type": [
+            "string"
+          ]
         }
       },
       "links": [
@@ -340,6 +347,9 @@ module LibLynxAPI
               },
               "enable_shibboleth": {
                 "$ref": "#/definitions/account/definitions/enable_shibboleth"
+              },
+              "shibboleth_entity_id": {
+                "$ref": "#/definitions/account/definitions/shibboleth_entity_id"
               }
             },
             "required": [
@@ -424,6 +434,9 @@ module LibLynxAPI
               },
               "enable_shibboleth": {
                 "$ref": "#/definitions/account/definitions/enable_shibboleth"
+              },
+              "shibboleth_entity_id": {
+                "$ref": "#/definitions/account/definitions/shibboleth_entity_id"
               }
             },
             "type": [
@@ -457,6 +470,9 @@ module LibLynxAPI
         },
         "updated_at": {
           "$ref": "#/definitions/account/definitions/modified_date"
+        },
+        "shibboleth_entity_id": {
+          "$ref": "#/definitions/account/definitions/shibboleth_entity_id"
         }
       }
     },

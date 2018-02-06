@@ -16,6 +16,7 @@ Stability: `production`
 | **id** | *integer* | unique identifier of account | `42` |
 | **name** | *string* | unique name of account | `"example"` |
 | **publisher_reference** | *string* | publisher reference | `"example"` |
+| **shibboleth_entity_id** | *uri* | shibboleth entity id |  |
 | **updated_at** | *date-time* | when account was updated | `"2015-01-01T12:00:00Z"` |
 
 ### <a name="link-POST-account-/api/accounts">Account Create</a>
@@ -41,6 +42,7 @@ POST /api/accounts
 | **enable_saml** | *boolean* | saml enabled | `true` |
 | **enable_shibboleth** | *boolean* | shibboleth enabled | `true` |
 | **publisher_reference** | *string* | publisher reference | `"example"` |
+| **shibboleth_entity_id** | *uri* | shibboleth entity id |  |
 
 
 #### Curl Example
@@ -52,7 +54,8 @@ $ curl -n -X POST https://connect.liblynx.com/api/accounts \
   "publisher_reference": "example",
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "enable_saml": true,
-  "enable_shibboleth": true
+  "enable_shibboleth": true,
+  "shibboleth_entity_id": "example"
 }' \
   -H "Content-Type: application/json"
 ```
@@ -73,7 +76,8 @@ HTTP/1.1 201 Created
   "enable_saml": true,
   "enable_shibboleth": true,
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
-  "updated_at": "2015-01-01T12:00:00Z"
+  "updated_at": "2015-01-01T12:00:00Z",
+  "shibboleth_entity_id": "example"
 }
 ```
 
@@ -135,7 +139,8 @@ HTTP/1.1 200 OK
   "enable_saml": true,
   "enable_shibboleth": true,
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
-  "updated_at": "2015-01-01T12:00:00Z"
+  "updated_at": "2015-01-01T12:00:00Z",
+  "shibboleth_entity_id": "example"
 }
 ```
 
@@ -191,6 +196,7 @@ PUT /api/accounts/{account_id}
 | **enable_saml** | *boolean* | saml enabled | `true` |
 | **enable_shibboleth** | *boolean* | shibboleth enabled | `true` |
 | **publisher_reference** | *string* | publisher reference | `"example"` |
+| **shibboleth_entity_id** | *uri* | shibboleth entity id |  |
 
 
 #### Curl Example
@@ -202,7 +208,8 @@ $ curl -n -X PUT https://connect.liblynx.com/api/accounts/$ACCOUNT_ID \
   "publisher_reference": "example",
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "enable_saml": true,
-  "enable_shibboleth": true
+  "enable_shibboleth": true,
+  "shibboleth_entity_id": "example"
 }' \
   -H "Content-Type: application/json"
 ```
@@ -223,7 +230,8 @@ HTTP/1.1 200 OK
   "enable_saml": true,
   "enable_shibboleth": true,
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
-  "updated_at": "2015-01-01T12:00:00Z"
+  "updated_at": "2015-01-01T12:00:00Z",
+  "shibboleth_entity_id": "example"
 }
 ```
 
