@@ -9,14 +9,27 @@ Stability: `production`
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
+| **active** | *boolean* | active | `true` |
 | **created_at** | *date-time* | when account was created | `"2015-01-01T12:00:00Z"` |
 | **email_domains** | *string* | cr separated email domains | `"*.somedomain.com\nalt.somedomain2.com"` |
-| **enable_saml** | *boolean* | saml enabled | `true` |
-| **enable_shibboleth** | *boolean* | shibboleth enabled | `true` |
+| **enable_archimed** | *boolean* | enable archimed | `true` |
+| **enable_individual** | *boolean* | enable individual | `true` |
+| **enable_ip** | *boolean* | enable ip | `true` |
+| **enable_lib_portal_stats** | *boolean* | enable lib portal stats | `true` |
+| **enable_library_card** | *boolean* | enable library card | `true` |
+| **enable_open_athens** | *boolean* | enable open athens | `true` |
+| **enable_pass_code** | *boolean* | enable pass code | `true` |
+| **enable_referrer** | *boolean* | enable referrer | `true` |
+| **enable_saml** | *boolean* | enable saml | `true` |
+| **enable_self_registration** | *boolean* | enable self registration | `true` |
+| **enable_shibboleth** | *boolean* | enable shibboleth | `true` |
 | **id** | *integer* | unique identifier of account | `42` |
+| **individual** | *boolean* | individual | `true` |
+| **individual_limit** | *integer* | individual limit | `42` |
 | **name** | *string* | unique name of account | `"example"` |
 | **publisher_reference** | *string* | publisher reference | `"example"` |
 | **shibboleth_entity_id** | *uri* | shibboleth entity id |  |
+| **type** | *string* | type | `"example"` |
 | **updated_at** | *date-time* | when account was updated | `"2015-01-01T12:00:00Z"` |
 
 ### <a name="link-POST-account-/api/accounts">Account Create</a>
@@ -38,11 +51,24 @@ POST /api/accounts
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
+| **active** | *boolean* | active | `true` |
 | **email_domains** | *string* | cr separated email domains | `"*.somedomain.com\nalt.somedomain2.com"` |
-| **enable_saml** | *boolean* | saml enabled | `true` |
-| **enable_shibboleth** | *boolean* | shibboleth enabled | `true` |
+| **enable_archimed** | *boolean* | enable archimed | `true` |
+| **enable_individual** | *boolean* | enable individual | `true` |
+| **enable_ip** | *boolean* | enable ip | `true` |
+| **enable_lib_portal_stats** | *boolean* | enable lib portal stats | `true` |
+| **enable_library_card** | *boolean* | enable library card | `true` |
+| **enable_open_athens** | *boolean* | enable open athens | `true` |
+| **enable_pass_code** | *boolean* | enable pass code | `true` |
+| **enable_referrer** | *boolean* | enable referrer | `true` |
+| **enable_saml** | *boolean* | enable saml | `true` |
+| **enable_self_registration** | *boolean* | enable self registration | `true` |
+| **enable_shibboleth** | *boolean* | enable shibboleth | `true` |
+| **individual** | *boolean* | individual | `true` |
+| **individual_limit** | *integer* | individual limit | `42` |
 | **publisher_reference** | *string* | publisher reference | `"example"` |
 | **shibboleth_entity_id** | *uri* | shibboleth entity id |  |
+| **type** | *string* | type | `"example"` |
 
 
 #### Curl Example
@@ -55,7 +81,20 @@ $ curl -n -X POST https://connect.liblynx.com/api/accounts \
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "enable_saml": true,
   "enable_shibboleth": true,
-  "shibboleth_entity_id": "example"
+  "shibboleth_entity_id": "example",
+  "enable_ip": true,
+  "enable_pass_code": true,
+  "enable_referrer": true,
+  "enable_library_card": true,
+  "enable_individual": true,
+  "enable_open_athens": true,
+  "enable_archimed": true,
+  "active": true,
+  "enable_self_registration": true,
+  "enable_lib_portal_stats": true,
+  "individual_limit": 42,
+  "individual": true,
+  "type": "example"
 }' \
   -H "Content-Type: application/json"
 ```
@@ -77,7 +116,20 @@ HTTP/1.1 201 Created
   "enable_shibboleth": true,
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "updated_at": "2015-01-01T12:00:00Z",
-  "shibboleth_entity_id": "example"
+  "shibboleth_entity_id": "example",
+  "enable_ip": true,
+  "enable_pass_code": true,
+  "enable_referrer": true,
+  "enable_library_card": true,
+  "enable_individual": true,
+  "enable_open_athens": true,
+  "enable_archimed": true,
+  "active": true,
+  "enable_self_registration": true,
+  "enable_lib_portal_stats": true,
+  "individual_limit": 42,
+  "individual": true,
+  "type": "example"
 }
 ```
 
@@ -140,7 +192,20 @@ HTTP/1.1 200 OK
   "enable_shibboleth": true,
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "updated_at": "2015-01-01T12:00:00Z",
-  "shibboleth_entity_id": "example"
+  "shibboleth_entity_id": "example",
+  "enable_ip": true,
+  "enable_pass_code": true,
+  "enable_referrer": true,
+  "enable_library_card": true,
+  "enable_individual": true,
+  "enable_open_athens": true,
+  "enable_archimed": true,
+  "active": true,
+  "enable_self_registration": true,
+  "enable_lib_portal_stats": true,
+  "individual_limit": 42,
+  "individual": true,
+  "type": "example"
 }
 ```
 
@@ -168,14 +233,18 @@ HTTP/1.1 200 OK
 
 ```json
 {
-  "accounts": {
-    "id": 42,
-    "account_name": "example",
-    "publisher_reference": "example",
-    "email_domains": "*.somedomain.com\nalt.somedomain2.com",
-    "enable_saml": true,
-    "enable_shibboleth": true
-  }
+  "accounts": [
+    {
+      "id": 42,
+      "account_name": "example",
+      "individual": true,
+      "active": true,
+      "publisher_reference": "example",
+      "type": "example",
+      "modified_date": "2015-01-01T12:00:00Z",
+      "creation_date": "2015-01-01T12:00:00Z"
+    }
+  ]
 }
 ```
 
@@ -192,11 +261,24 @@ PUT /api/accounts/{account_id}
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **account_name** | *string* | unique name of account | `"example"` |
+| **active** | *boolean* | active | `true` |
 | **email_domains** | *string* | cr separated email domains | `"*.somedomain.com\nalt.somedomain2.com"` |
-| **enable_saml** | *boolean* | saml enabled | `true` |
-| **enable_shibboleth** | *boolean* | shibboleth enabled | `true` |
+| **enable_archimed** | *boolean* | enable archimed | `true` |
+| **enable_individual** | *boolean* | enable individual | `true` |
+| **enable_ip** | *boolean* | enable ip | `true` |
+| **enable_lib_portal_stats** | *boolean* | enable lib portal stats | `true` |
+| **enable_library_card** | *boolean* | enable library card | `true` |
+| **enable_open_athens** | *boolean* | enable open athens | `true` |
+| **enable_pass_code** | *boolean* | enable pass code | `true` |
+| **enable_referrer** | *boolean* | enable referrer | `true` |
+| **enable_saml** | *boolean* | enable saml | `true` |
+| **enable_self_registration** | *boolean* | enable self registration | `true` |
+| **enable_shibboleth** | *boolean* | enable shibboleth | `true` |
+| **individual** | *boolean* | individual | `true` |
+| **individual_limit** | *integer* | individual limit | `42` |
 | **publisher_reference** | *string* | publisher reference | `"example"` |
 | **shibboleth_entity_id** | *uri* | shibboleth entity id |  |
+| **type** | *string* | type | `"example"` |
 
 
 #### Curl Example
@@ -209,7 +291,20 @@ $ curl -n -X PUT https://connect.liblynx.com/api/accounts/$ACCOUNT_ID \
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "enable_saml": true,
   "enable_shibboleth": true,
-  "shibboleth_entity_id": "example"
+  "shibboleth_entity_id": "example",
+  "enable_ip": true,
+  "enable_pass_code": true,
+  "enable_referrer": true,
+  "enable_library_card": true,
+  "enable_individual": true,
+  "enable_open_athens": true,
+  "enable_archimed": true,
+  "active": true,
+  "enable_self_registration": true,
+  "enable_lib_portal_stats": true,
+  "individual_limit": 42,
+  "individual": true,
+  "type": "example"
 }' \
   -H "Content-Type: application/json"
 ```
@@ -231,7 +326,20 @@ HTTP/1.1 200 OK
   "enable_shibboleth": true,
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "updated_at": "2015-01-01T12:00:00Z",
-  "shibboleth_entity_id": "example"
+  "shibboleth_entity_id": "example",
+  "enable_ip": true,
+  "enable_pass_code": true,
+  "enable_referrer": true,
+  "enable_library_card": true,
+  "enable_individual": true,
+  "enable_open_athens": true,
+  "enable_archimed": true,
+  "active": true,
+  "enable_self_registration": true,
+  "enable_lib_portal_stats": true,
+  "individual_limit": 42,
+  "individual": true,
+  "type": "example"
 }
 ```
 
@@ -246,8 +354,26 @@ Stability: `production`
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
+| **authorizations** | *array* | authorizations |  |
 | **created** | *date-time* | when identification was created | `"2015-01-01T12:00:00Z"` |
 | **id** | *uuid* | unique identifier of identification | `"01234567-89ab-cdef-0123-456789abcdef"` |
+| **ip** | *ipv4* | ip address | `"192.0.2.1"` |
+| **publisher:id** | *integer* |  | `42` |
+| **publisher:publisher_name** | *string* |  | `"example"` |
+| **status** | *string* | status | `"example"` |
+| **target_account:account_name** | *string* |  | `"example"` |
+| **target_account:id** | *integer* |  | `42` |
+| **target_account:individual** | *boolean* |  | `true` |
+| **target_account:publisher_reference** | *string* |  | `"example"` |
+| **target_account:type** | *string* |  | `"example"` |
+| **terms** | *string* | terms | `"example"` |
+| **unit_requests** | *array* | unit requests |  |
+| **url** | *uri* | callback url |  |
+| **user_agent** | *string* | user agent | `"example"` |
+| **user_institution:account_name** | *string* |  | `"example"` |
+| **user_institution:country_code** | *string* |  | `"example"` |
+| **user_institution:id** | *integer* |  | `42` |
+| **user_institution:type** | *string* |  | `"example"` |
 
 ### <a name="link-POST-identification-/api/identifications">Identification Create</a>
 
@@ -296,7 +422,31 @@ HTTP/1.1 201 Created
 ```json
 {
   "created": "2015-01-01T12:00:00Z",
-  "id": "01234567-89ab-cdef-0123-456789abcdef"
+  "id": "01234567-89ab-cdef-0123-456789abcdef",
+  "url": "example",
+  "ip": "192.0.2.1",
+  "status": "example",
+  "terms": "example",
+  "authorizations": null,
+  "unit_requests": null,
+  "publisher": {
+    "id": 42,
+    "publisher_name": "example"
+  },
+  "user_agent": "example",
+  "user_institution": {
+    "id": 42,
+    "account_name": "example",
+    "country_code": "example",
+    "type": "example"
+  },
+  "target_account": {
+    "id": 42,
+    "account_name": "example",
+    "individual": true,
+    "type": "example",
+    "publisher_reference": "example"
+  }
 }
 ```
 
@@ -325,7 +475,31 @@ HTTP/1.1 200 OK
 ```json
 {
   "created": "2015-01-01T12:00:00Z",
-  "id": "01234567-89ab-cdef-0123-456789abcdef"
+  "id": "01234567-89ab-cdef-0123-456789abcdef",
+  "url": "example",
+  "ip": "192.0.2.1",
+  "status": "example",
+  "terms": "example",
+  "authorizations": null,
+  "unit_requests": null,
+  "publisher": {
+    "id": 42,
+    "publisher_name": "example"
+  },
+  "user_agent": "example",
+  "user_institution": {
+    "id": 42,
+    "account_name": "example",
+    "country_code": "example",
+    "type": "example"
+  },
+  "target_account": {
+    "id": 42,
+    "account_name": "example",
+    "individual": true,
+    "type": "example",
+    "publisher_reference": "example"
+  }
 }
 ```
 
@@ -341,7 +515,10 @@ Stability: `production`
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **descriptor_url** | *string* | saml descriptor url | `"example"` |
+| **entity_id** | *string* | entity_id | `"example"` |
 | **id** | *integer* | unique identifier of samlidp | `42` |
+| **type** | *string* | type | `"example"` |
+| **xml_descriptor** | *string* | xml descriptor | `"example"` |
 
 ### <a name="link-POST-samlidp-/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps">Samlidp Create</a>
 
@@ -351,12 +528,20 @@ Create a new samlidp.
 POST /api/accounts/{account_id}/samlidps
 ```
 
+#### Required Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **descriptor_url** | *string* | saml descriptor url | `"example"` |
+
+
 
 #### Curl Example
 
 ```bash
 $ curl -n -X POST https://connect.liblynx.com/api/accounts/$ACCOUNT_ID/samlidps \
   -d '{
+  "descriptor_url": "example"
 }' \
   -H "Content-Type: application/json"
 ```
@@ -371,7 +556,10 @@ HTTP/1.1 201 Created
 ```json
 {
   "id": 42,
-  "descriptor_url": "example"
+  "descriptor_url": "example",
+  "xml_descriptor": "example",
+  "type": "example",
+  "entity_id": "example"
 }
 ```
 
@@ -399,10 +587,7 @@ HTTP/1.1 200 OK
 ```
 
 ```json
-{
-  "id": 42,
-  "descriptor_url": "example"
-}
+null
 ```
 
 ### <a name="link-GET-samlidp-/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps/{(%23%2Fdefinitions%2Fsamlidp%2Fdefinitions%2Fidentity)}">Samlidp Info</a>
@@ -430,7 +615,10 @@ HTTP/1.1 200 OK
 ```json
 {
   "id": 42,
-  "descriptor_url": "example"
+  "descriptor_url": "example",
+  "xml_descriptor": "example",
+  "type": "example",
+  "entity_id": "example"
 }
 ```
 
@@ -457,12 +645,17 @@ HTTP/1.1 200 OK
 ```
 
 ```json
-[
-  {
-    "id": 42,
-    "descriptor_url": "example"
-  }
-]
+{
+  "samlidps": [
+    {
+      "id": 42,
+      "descriptor_url": "example",
+      "xml_descriptor": "example",
+      "type": "example",
+      "entity_id": "example"
+    }
+  ]
+}
 ```
 
 
@@ -477,7 +670,6 @@ Stability: `production`
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **account_token** | *string* | unique identifier of identification | `"example"` |
-| **grant_type** | *string* | grant_type | `"client_credentials"` |
 
 ### <a name="link-POST-token-/oauth/v2/token">OAuth2 token Create</a>
 
@@ -487,11 +679,12 @@ Create a new oauth2 token
 POST /oauth/v2/token
 ```
 
-#### Optional Parameters
+#### Required Parameters
 
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **grant_type** | *string* | grant_type | `"client_credentials"` |
+
 
 
 #### Curl Example

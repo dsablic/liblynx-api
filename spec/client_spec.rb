@@ -7,12 +7,12 @@ describe 'The generated liblynx api client' do
   before(:all) do
     @client = LibLynxAPI.connect_oauth2(ENV['CLIENT_ID'], ENV['CLIENT_SECRET'])
     @test_domain = 'somedomain.com'
-    @test_descriptor_url = 'http://rdcu.be/Gm6q'
+    @test_descriptor_url = 'http://bit.ly/2E5Srk5'
     @test_shib_entity = 'https://test-idp.ukfederation.org.uk/idp/shibboleth'
     @test_account_config = {
       'account_name' => SecureRandom.uuid,
       'publisher_reference' => SecureRandom.random_number(1_000_000).to_s,
-      'email_domains' => "#{@test_domain}"
+      'email_domains' => "subdomain.#{@test_domain}\n#{@test_domain}"
     }
     @id_config = {
       user_agent: 'Some agent',
@@ -44,6 +44,11 @@ describe 'The generated liblynx api client' do
     it 'can add saml idp descriptor url to an account' do
       expect { @client.samlidp.create(@account['id'], descriptor_url: @test_descriptor_url) }
         .not_to raise_error
+    end
+
+    it 'can list an account saml idps' do
+      expect(@client.samlidp.list(@account['id']))
+        .to match(hash_including('samlidps'))
     end
 
     context 'identification' do

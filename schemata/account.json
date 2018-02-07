@@ -29,15 +29,93 @@
       ]
     },
     "enable_saml": {
-      "description": "saml enabled",
+      "description": "enable saml",
       "type": [
         "boolean"
       ]
     },
     "enable_shibboleth": {
-      "description": "shibboleth enabled",
+      "description": "enable shibboleth",
       "type": [
         "boolean"
+      ]
+    },
+    "enable_ip": {
+      "description": "enable ip",
+      "type": [
+        "boolean"
+      ]
+    },
+    "enable_referrer": {
+      "description": "enable referrer",
+      "type": [
+        "boolean"
+      ]
+    },
+    "enable_library_card": {
+      "description": "enable library card",
+      "type": [
+        "boolean"
+      ]
+    },
+    "enable_individual": {
+      "description": "enable individual",
+      "type": [
+        "boolean"
+      ]
+    },
+    "enable_open_athens": {
+      "description": "enable open athens",
+      "type": [
+        "boolean"
+      ]
+    },
+    "enable_archimed": {
+      "description": "enable archimed",
+      "type": [
+        "boolean"
+      ]
+    },
+    "active": {
+      "description": "active",
+      "type": [
+        "boolean"
+      ]
+    },
+    "enable_pass_code": {
+      "description": "enable pass code",
+      "type": [
+        "boolean"
+      ]
+    },
+    "enable_self_registration": {
+      "description": "enable self registration",
+      "type": [
+        "boolean"
+      ]
+    },
+    "enable_lib_portal_stats": {
+      "description": "enable lib portal stats",
+      "type": [
+        "boolean"
+      ]
+    },
+    "individual_limit": {
+      "description": "individual limit",
+      "type": [
+        "integer"
+      ]
+    },
+    "individual": {
+      "description": "individual",
+      "type": [
+        "boolean"
+      ]
+    },
+    "type": {
+      "description": "type",
+      "type": [
+        "string"
       ]
     },
     "identity": {
@@ -98,6 +176,45 @@
           },
           "shibboleth_entity_id": {
             "$ref": "/schemata/account#/definitions/shibboleth_entity_id"
+          },
+          "enable_ip": {
+            "$ref": "/schemata/account#/definitions/enable_ip"
+          },
+          "enable_pass_code": {
+            "$ref": "/schemata/account#/definitions/enable_pass_code"
+          },
+          "enable_referrer": {
+            "$ref": "/schemata/account#/definitions/enable_referrer"
+          },
+          "enable_library_card": {
+            "$ref": "/schemata/account#/definitions/enable_library_card"
+          },
+          "enable_individual": {
+            "$ref": "/schemata/account#/definitions/enable_individual"
+          },
+          "enable_open_athens": {
+            "$ref": "/schemata/account#/definitions/enable_open_athens"
+          },
+          "enable_archimed": {
+            "$ref": "/schemata/account#/definitions/enable_archimed"
+          },
+          "active": {
+            "$ref": "/schemata/account#/definitions/active"
+          },
+          "enable_self_registration": {
+            "$ref": "/schemata/account#/definitions/enable_self_registration"
+          },
+          "enable_lib_portal_stats": {
+            "$ref": "/schemata/account#/definitions/enable_lib_portal_stats"
+          },
+          "individual_limit": {
+            "$ref": "/schemata/account#/definitions/individual_limit"
+          },
+          "individual": {
+            "$ref": "/schemata/account#/definitions/individual"
+          },
+          "type": {
+            "$ref": "/schemata/account#/definitions/type"
           }
         },
         "required": [
@@ -132,24 +249,32 @@
       "targetSchema": {
         "properties": {
           "accounts": {
-            "properties": {
-              "id": {
-                "$ref": "/schemata/account#/definitions/id"
-              },
-              "account_name": {
-                "$ref": "/schemata/account#/definitions/account_name"
-              },
-              "publisher_reference": {
-                "$ref": "/schemata/account#/definitions/publisher_reference"
-              },
-              "email_domains": {
-                "$ref": "/schemata/account#/definitions/email_domains"
-              },
-              "enable_saml": {
-                "$ref": "/schemata/account#/definitions/enable_saml"
-              },
-              "enable_shibboleth": {
-                "$ref": "/schemata/account#/definitions/enable_shibboleth"
+            "items": {
+              "properties": {
+                "id": {
+                  "$ref": "/schemata/account#/definitions/id"
+                },
+                "account_name": {
+                  "$ref": "/schemata/account#/definitions/account_name"
+                },
+                "individual": {
+                  "$ref": "/schemata/account#/definitions/individual"
+                },
+                "active": {
+                  "$ref": "/schemata/account#/definitions/active"
+                },
+                "publisher_reference": {
+                  "$ref": "/schemata/account#/definitions/publisher_reference"
+                },
+                "type": {
+                  "$ref": "/schemata/account#/definitions/type"
+                },
+                "modified_date": {
+                  "$ref": "/schemata/account#/definitions/modified_date"
+                },
+                "creation_date": {
+                  "$ref": "/schemata/account#/definitions/creation_date"
+                }
               }
             },
             "type": [
@@ -184,6 +309,45 @@
           },
           "shibboleth_entity_id": {
             "$ref": "/schemata/account#/definitions/shibboleth_entity_id"
+          },
+          "enable_ip": {
+            "$ref": "/schemata/account#/definitions/enable_ip"
+          },
+          "enable_pass_code": {
+            "$ref": "/schemata/account#/definitions/enable_pass_code"
+          },
+          "enable_referrer": {
+            "$ref": "/schemata/account#/definitions/enable_referrer"
+          },
+          "enable_library_card": {
+            "$ref": "/schemata/account#/definitions/enable_library_card"
+          },
+          "enable_individual": {
+            "$ref": "/schemata/account#/definitions/enable_individual"
+          },
+          "enable_open_athens": {
+            "$ref": "/schemata/account#/definitions/enable_open_athens"
+          },
+          "enable_archimed": {
+            "$ref": "/schemata/account#/definitions/enable_archimed"
+          },
+          "active": {
+            "$ref": "/schemata/account#/definitions/active"
+          },
+          "enable_self_registration": {
+            "$ref": "/schemata/account#/definitions/enable_self_registration"
+          },
+          "enable_lib_portal_stats": {
+            "$ref": "/schemata/account#/definitions/enable_lib_portal_stats"
+          },
+          "individual_limit": {
+            "$ref": "/schemata/account#/definitions/individual_limit"
+          },
+          "individual": {
+            "$ref": "/schemata/account#/definitions/individual"
+          },
+          "type": {
+            "$ref": "/schemata/account#/definitions/type"
           }
         },
         "type": [
@@ -220,6 +384,45 @@
     },
     "shibboleth_entity_id": {
       "$ref": "/schemata/account#/definitions/shibboleth_entity_id"
+    },
+    "enable_ip": {
+      "$ref": "/schemata/account#/definitions/enable_ip"
+    },
+    "enable_pass_code": {
+      "$ref": "/schemata/account#/definitions/enable_pass_code"
+    },
+    "enable_referrer": {
+      "$ref": "/schemata/account#/definitions/enable_referrer"
+    },
+    "enable_library_card": {
+      "$ref": "/schemata/account#/definitions/enable_library_card"
+    },
+    "enable_individual": {
+      "$ref": "/schemata/account#/definitions/enable_individual"
+    },
+    "enable_open_athens": {
+      "$ref": "/schemata/account#/definitions/enable_open_athens"
+    },
+    "enable_archimed": {
+      "$ref": "/schemata/account#/definitions/enable_archimed"
+    },
+    "active": {
+      "$ref": "/schemata/account#/definitions/active"
+    },
+    "enable_self_registration": {
+      "$ref": "/schemata/account#/definitions/enable_self_registration"
+    },
+    "enable_lib_portal_stats": {
+      "$ref": "/schemata/account#/definitions/enable_lib_portal_stats"
+    },
+    "individual_limit": {
+      "$ref": "/schemata/account#/definitions/individual_limit"
+    },
+    "individual": {
+      "$ref": "/schemata/account#/definitions/individual"
+    },
+    "type": {
+      "$ref": "/schemata/account#/definitions/type"
     }
   },
   "id": "schemata/account"

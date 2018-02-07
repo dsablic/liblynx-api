@@ -35,15 +35,93 @@
           ]
         },
         "enable_saml": {
-          "description": "saml enabled",
+          "description": "enable saml",
           "type": [
             "boolean"
           ]
         },
         "enable_shibboleth": {
-          "description": "shibboleth enabled",
+          "description": "enable shibboleth",
           "type": [
             "boolean"
+          ]
+        },
+        "enable_ip": {
+          "description": "enable ip",
+          "type": [
+            "boolean"
+          ]
+        },
+        "enable_referrer": {
+          "description": "enable referrer",
+          "type": [
+            "boolean"
+          ]
+        },
+        "enable_library_card": {
+          "description": "enable library card",
+          "type": [
+            "boolean"
+          ]
+        },
+        "enable_individual": {
+          "description": "enable individual",
+          "type": [
+            "boolean"
+          ]
+        },
+        "enable_open_athens": {
+          "description": "enable open athens",
+          "type": [
+            "boolean"
+          ]
+        },
+        "enable_archimed": {
+          "description": "enable archimed",
+          "type": [
+            "boolean"
+          ]
+        },
+        "active": {
+          "description": "active",
+          "type": [
+            "boolean"
+          ]
+        },
+        "enable_pass_code": {
+          "description": "enable pass code",
+          "type": [
+            "boolean"
+          ]
+        },
+        "enable_self_registration": {
+          "description": "enable self registration",
+          "type": [
+            "boolean"
+          ]
+        },
+        "enable_lib_portal_stats": {
+          "description": "enable lib portal stats",
+          "type": [
+            "boolean"
+          ]
+        },
+        "individual_limit": {
+          "description": "individual limit",
+          "type": [
+            "integer"
+          ]
+        },
+        "individual": {
+          "description": "individual",
+          "type": [
+            "boolean"
+          ]
+        },
+        "type": {
+          "description": "type",
+          "type": [
+            "string"
           ]
         },
         "identity": {
@@ -104,6 +182,45 @@
               },
               "shibboleth_entity_id": {
                 "$ref": "#/definitions/account/definitions/shibboleth_entity_id"
+              },
+              "enable_ip": {
+                "$ref": "#/definitions/account/definitions/enable_ip"
+              },
+              "enable_pass_code": {
+                "$ref": "#/definitions/account/definitions/enable_pass_code"
+              },
+              "enable_referrer": {
+                "$ref": "#/definitions/account/definitions/enable_referrer"
+              },
+              "enable_library_card": {
+                "$ref": "#/definitions/account/definitions/enable_library_card"
+              },
+              "enable_individual": {
+                "$ref": "#/definitions/account/definitions/enable_individual"
+              },
+              "enable_open_athens": {
+                "$ref": "#/definitions/account/definitions/enable_open_athens"
+              },
+              "enable_archimed": {
+                "$ref": "#/definitions/account/definitions/enable_archimed"
+              },
+              "active": {
+                "$ref": "#/definitions/account/definitions/active"
+              },
+              "enable_self_registration": {
+                "$ref": "#/definitions/account/definitions/enable_self_registration"
+              },
+              "enable_lib_portal_stats": {
+                "$ref": "#/definitions/account/definitions/enable_lib_portal_stats"
+              },
+              "individual_limit": {
+                "$ref": "#/definitions/account/definitions/individual_limit"
+              },
+              "individual": {
+                "$ref": "#/definitions/account/definitions/individual"
+              },
+              "type": {
+                "$ref": "#/definitions/account/definitions/type"
               }
             },
             "required": [
@@ -139,24 +256,32 @@
           "targetSchema": {
             "properties": {
               "accounts": {
-                "properties": {
-                  "id": {
-                    "$ref": "#/definitions/account/definitions/id"
-                  },
-                  "account_name": {
-                    "$ref": "#/definitions/account/definitions/account_name"
-                  },
-                  "publisher_reference": {
-                    "$ref": "#/definitions/account/definitions/publisher_reference"
-                  },
-                  "email_domains": {
-                    "$ref": "#/definitions/account/definitions/email_domains"
-                  },
-                  "enable_saml": {
-                    "$ref": "#/definitions/account/definitions/enable_saml"
-                  },
-                  "enable_shibboleth": {
-                    "$ref": "#/definitions/account/definitions/enable_shibboleth"
+                "items": {
+                  "properties": {
+                    "id": {
+                      "$ref": "#/definitions/account/definitions/id"
+                    },
+                    "account_name": {
+                      "$ref": "#/definitions/account/definitions/account_name"
+                    },
+                    "individual": {
+                      "$ref": "#/definitions/account/definitions/individual"
+                    },
+                    "active": {
+                      "$ref": "#/definitions/account/definitions/active"
+                    },
+                    "publisher_reference": {
+                      "$ref": "#/definitions/account/definitions/publisher_reference"
+                    },
+                    "type": {
+                      "$ref": "#/definitions/account/definitions/type"
+                    },
+                    "modified_date": {
+                      "$ref": "#/definitions/account/definitions/modified_date"
+                    },
+                    "creation_date": {
+                      "$ref": "#/definitions/account/definitions/creation_date"
+                    }
                   }
                 },
                 "type": [
@@ -191,6 +316,45 @@
               },
               "shibboleth_entity_id": {
                 "$ref": "#/definitions/account/definitions/shibboleth_entity_id"
+              },
+              "enable_ip": {
+                "$ref": "#/definitions/account/definitions/enable_ip"
+              },
+              "enable_pass_code": {
+                "$ref": "#/definitions/account/definitions/enable_pass_code"
+              },
+              "enable_referrer": {
+                "$ref": "#/definitions/account/definitions/enable_referrer"
+              },
+              "enable_library_card": {
+                "$ref": "#/definitions/account/definitions/enable_library_card"
+              },
+              "enable_individual": {
+                "$ref": "#/definitions/account/definitions/enable_individual"
+              },
+              "enable_open_athens": {
+                "$ref": "#/definitions/account/definitions/enable_open_athens"
+              },
+              "enable_archimed": {
+                "$ref": "#/definitions/account/definitions/enable_archimed"
+              },
+              "active": {
+                "$ref": "#/definitions/account/definitions/active"
+              },
+              "enable_self_registration": {
+                "$ref": "#/definitions/account/definitions/enable_self_registration"
+              },
+              "enable_lib_portal_stats": {
+                "$ref": "#/definitions/account/definitions/enable_lib_portal_stats"
+              },
+              "individual_limit": {
+                "$ref": "#/definitions/account/definitions/individual_limit"
+              },
+              "individual": {
+                "$ref": "#/definitions/account/definitions/individual"
+              },
+              "type": {
+                "$ref": "#/definitions/account/definitions/type"
               }
             },
             "type": [
@@ -227,6 +391,45 @@
         },
         "shibboleth_entity_id": {
           "$ref": "#/definitions/account/definitions/shibboleth_entity_id"
+        },
+        "enable_ip": {
+          "$ref": "#/definitions/account/definitions/enable_ip"
+        },
+        "enable_pass_code": {
+          "$ref": "#/definitions/account/definitions/enable_pass_code"
+        },
+        "enable_referrer": {
+          "$ref": "#/definitions/account/definitions/enable_referrer"
+        },
+        "enable_library_card": {
+          "$ref": "#/definitions/account/definitions/enable_library_card"
+        },
+        "enable_individual": {
+          "$ref": "#/definitions/account/definitions/enable_individual"
+        },
+        "enable_open_athens": {
+          "$ref": "#/definitions/account/definitions/enable_open_athens"
+        },
+        "enable_archimed": {
+          "$ref": "#/definitions/account/definitions/enable_archimed"
+        },
+        "active": {
+          "$ref": "#/definitions/account/definitions/active"
+        },
+        "enable_self_registration": {
+          "$ref": "#/definitions/account/definitions/enable_self_registration"
+        },
+        "enable_lib_portal_stats": {
+          "$ref": "#/definitions/account/definitions/enable_lib_portal_stats"
+        },
+        "individual_limit": {
+          "$ref": "#/definitions/account/definitions/individual_limit"
+        },
+        "individual": {
+          "$ref": "#/definitions/account/definitions/individual"
+        },
+        "type": {
+          "$ref": "#/definitions/account/definitions/type"
         }
       }
     },
@@ -284,6 +487,109 @@
           "type": [
             "string"
           ]
+        },
+        "status": {
+          "description": "status",
+          "type": [
+            "string"
+          ]
+        },
+        "terms": {
+          "description": "terms",
+          "type": [
+            "string"
+          ]
+        },
+        "authorizations": {
+          "description": "authorizations",
+          "type": [
+            "array"
+          ]
+        },
+        "unit_requests": {
+          "description": "unit requests",
+          "type": [
+            "array"
+          ]
+        },
+        "publisher": {
+          "description": "publisher",
+          "properties": {
+            "id": {
+              "type": [
+                "integer"
+              ]
+            },
+            "publisher_name": {
+              "type": [
+                "string"
+              ]
+            }
+          },
+          "type": [
+            "object"
+          ]
+        },
+        "user_institution": {
+          "description": "user institution",
+          "properties": {
+            "id": {
+              "type": [
+                "integer"
+              ]
+            },
+            "account_name": {
+              "type": [
+                "string"
+              ]
+            },
+            "country_code": {
+              "type": [
+                "string"
+              ]
+            },
+            "type": {
+              "type": [
+                "string"
+              ]
+            }
+          },
+          "type": [
+            "object"
+          ]
+        },
+        "target_account": {
+          "description": "target account",
+          "properties": {
+            "id": {
+              "type": [
+                "integer"
+              ]
+            },
+            "account_name": {
+              "type": [
+                "string"
+              ]
+            },
+            "individual": {
+              "type": [
+                "boolean"
+              ]
+            },
+            "type": {
+              "type": [
+                "string"
+              ]
+            },
+            "publisher_reference": {
+              "type": [
+                "string"
+              ]
+            }
+          },
+          "type": [
+            "object"
+          ]
         }
       },
       "links": [
@@ -332,6 +638,36 @@
         },
         "id": {
           "$ref": "#/definitions/identification/definitions/id"
+        },
+        "url": {
+          "$ref": "#/definitions/identification/definitions/url"
+        },
+        "ip": {
+          "$ref": "#/definitions/identification/definitions/ip"
+        },
+        "status": {
+          "$ref": "#/definitions/identification/definitions/status"
+        },
+        "terms": {
+          "$ref": "#/definitions/identification/definitions/terms"
+        },
+        "authorizations": {
+          "$ref": "#/definitions/identification/definitions/authorizations"
+        },
+        "unit_requests": {
+          "$ref": "#/definitions/identification/definitions/unit_requests"
+        },
+        "publisher": {
+          "$ref": "#/definitions/identification/definitions/publisher"
+        },
+        "user_agent": {
+          "$ref": "#/definitions/identification/definitions/user_agent"
+        },
+        "user_institution": {
+          "$ref": "#/definitions/identification/definitions/user_institution"
+        },
+        "target_account": {
+          "$ref": "#/definitions/identification/definitions/target_account"
         }
       }
     },
@@ -359,6 +695,27 @@
             "string"
           ]
         },
+        "xml_descriptor": {
+          "description": "xml descriptor",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "type": {
+          "description": "type",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "entity_id": {
+          "description": "entity_id",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
         "identity": {
           "$ref": "#/definitions/samlidp/definitions/id"
         }
@@ -371,7 +728,13 @@
           "rel": "create",
           "schema": {
             "properties": {
+              "descriptor_url": {
+                "$ref": "#/definitions/samlidp/definitions/descriptor_url"
+              }
             },
+            "required": [
+              "descriptor_url"
+            ],
             "type": [
               "object"
             ]
@@ -383,7 +746,9 @@
           "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps/{(%23%2Fdefinitions%2Fsamlidp%2Fdefinitions%2Fidentity)}",
           "method": "DELETE",
           "rel": "destroy",
-          "title": "Delete"
+          "title": "Delete",
+          "targetSchema": {
+          }
         },
         {
           "description": "Info for existing samlidp.",
@@ -397,7 +762,35 @@
           "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/samlidps",
           "method": "GET",
           "rel": "instances",
-          "title": "List"
+          "title": "List",
+          "targetSchema": {
+            "properties": {
+              "samlidps": {
+                "items": {
+                  "properties": {
+                    "id": {
+                      "$ref": "#/definitions/samlidp/definitions/id"
+                    },
+                    "descriptor_url": {
+                      "$ref": "#/definitions/samlidp/definitions/descriptor_url"
+                    },
+                    "xml_descriptor": {
+                      "$ref": "#/definitions/samlidp/definitions/xml_descriptor"
+                    },
+                    "type": {
+                      "$ref": "#/definitions/samlidp/definitions/type"
+                    },
+                    "entity_id": {
+                      "$ref": "#/definitions/samlidp/definitions/entity_id"
+                    }
+                  }
+                },
+                "type": [
+                  "array"
+                ]
+              }
+            }
+          }
         }
       ],
       "properties": {
@@ -406,6 +799,15 @@
         },
         "descriptor_url": {
           "$ref": "#/definitions/samlidp/definitions/descriptor_url"
+        },
+        "xml_descriptor": {
+          "$ref": "#/definitions/samlidp/definitions/xml_descriptor"
+        },
+        "type": {
+          "$ref": "#/definitions/samlidp/definitions/type"
+        },
+        "entity_id": {
+          "$ref": "#/definitions/samlidp/definitions/entity_id"
         }
       }
     },
@@ -450,6 +852,9 @@
                 "$ref": "#/definitions/token/definitions/grant_type"
               }
             },
+            "required": [
+              "grant_type"
+            ],
             "type": [
               "object"
             ]
@@ -470,9 +875,6 @@
       "properties": {
         "account_token": {
           "$ref": "#/definitions/token/definitions/account_token"
-        },
-        "grant_type": {
-          "$ref": "#/definitions/token/definitions/grant_type"
         }
       }
     }

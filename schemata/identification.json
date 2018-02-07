@@ -52,6 +52,109 @@
       "type": [
         "string"
       ]
+    },
+    "status": {
+      "description": "status",
+      "type": [
+        "string"
+      ]
+    },
+    "terms": {
+      "description": "terms",
+      "type": [
+        "string"
+      ]
+    },
+    "authorizations": {
+      "description": "authorizations",
+      "type": [
+        "array"
+      ]
+    },
+    "unit_requests": {
+      "description": "unit requests",
+      "type": [
+        "array"
+      ]
+    },
+    "publisher": {
+      "description": "publisher",
+      "properties": {
+        "id": {
+          "type": [
+            "integer"
+          ]
+        },
+        "publisher_name": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "type": [
+        "object"
+      ]
+    },
+    "user_institution": {
+      "description": "user institution",
+      "properties": {
+        "id": {
+          "type": [
+            "integer"
+          ]
+        },
+        "account_name": {
+          "type": [
+            "string"
+          ]
+        },
+        "country_code": {
+          "type": [
+            "string"
+          ]
+        },
+        "type": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "type": [
+        "object"
+      ]
+    },
+    "target_account": {
+      "description": "target account",
+      "properties": {
+        "id": {
+          "type": [
+            "integer"
+          ]
+        },
+        "account_name": {
+          "type": [
+            "string"
+          ]
+        },
+        "individual": {
+          "type": [
+            "boolean"
+          ]
+        },
+        "type": {
+          "type": [
+            "string"
+          ]
+        },
+        "publisher_reference": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "type": [
+        "object"
+      ]
     }
   },
   "links": [
@@ -100,6 +203,36 @@
     },
     "id": {
       "$ref": "/schemata/identification#/definitions/id"
+    },
+    "url": {
+      "$ref": "/schemata/identification#/definitions/url"
+    },
+    "ip": {
+      "$ref": "/schemata/identification#/definitions/ip"
+    },
+    "status": {
+      "$ref": "/schemata/identification#/definitions/status"
+    },
+    "terms": {
+      "$ref": "/schemata/identification#/definitions/terms"
+    },
+    "authorizations": {
+      "$ref": "/schemata/identification#/definitions/authorizations"
+    },
+    "unit_requests": {
+      "$ref": "/schemata/identification#/definitions/unit_requests"
+    },
+    "publisher": {
+      "$ref": "/schemata/identification#/definitions/publisher"
+    },
+    "user_agent": {
+      "$ref": "/schemata/identification#/definitions/user_agent"
+    },
+    "user_institution": {
+      "$ref": "/schemata/identification#/definitions/user_institution"
+    },
+    "target_account": {
+      "$ref": "/schemata/identification#/definitions/target_account"
     }
   },
   "id": "schemata/identification"

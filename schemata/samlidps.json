@@ -22,6 +22,27 @@
         "string"
       ]
     },
+    "xml_descriptor": {
+      "description": "xml descriptor",
+      "readOnly": true,
+      "type": [
+        "string"
+      ]
+    },
+    "type": {
+      "description": "type",
+      "readOnly": true,
+      "type": [
+        "string"
+      ]
+    },
+    "entity_id": {
+      "description": "entity_id",
+      "readOnly": true,
+      "type": [
+        "string"
+      ]
+    },
     "identity": {
       "$ref": "/schemata/samlidp#/definitions/id"
     }
@@ -33,7 +54,14 @@
       "method": "POST",
       "rel": "create",
       "schema": {
-        "properties": {},
+        "properties": {
+          "descriptor_url": {
+            "$ref": "/schemata/samlidp#/definitions/descriptor_url"
+          }
+        },
+        "required": [
+          "descriptor_url"
+        ],
         "type": [
           "object"
         ]
@@ -45,7 +73,8 @@
       "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}/samlidps/{(%2Fschemata%2Fsamlidp%23%2Fdefinitions%2Fidentity)}",
       "method": "DELETE",
       "rel": "destroy",
-      "title": "Delete"
+      "title": "Delete",
+      "targetSchema": {}
     },
     {
       "description": "Info for existing samlidp.",
@@ -59,7 +88,35 @@
       "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}/samlidps",
       "method": "GET",
       "rel": "instances",
-      "title": "List"
+      "title": "List",
+      "targetSchema": {
+        "properties": {
+          "samlidps": {
+            "items": {
+              "properties": {
+                "id": {
+                  "$ref": "/schemata/samlidp#/definitions/id"
+                },
+                "descriptor_url": {
+                  "$ref": "/schemata/samlidp#/definitions/descriptor_url"
+                },
+                "xml_descriptor": {
+                  "$ref": "/schemata/samlidp#/definitions/xml_descriptor"
+                },
+                "type": {
+                  "$ref": "/schemata/samlidp#/definitions/type"
+                },
+                "entity_id": {
+                  "$ref": "/schemata/samlidp#/definitions/entity_id"
+                }
+              }
+            },
+            "type": [
+              "array"
+            ]
+          }
+        }
+      }
     }
   ],
   "properties": {
@@ -68,6 +125,15 @@
     },
     "descriptor_url": {
       "$ref": "/schemata/samlidp#/definitions/descriptor_url"
+    },
+    "xml_descriptor": {
+      "$ref": "/schemata/samlidp#/definitions/xml_descriptor"
+    },
+    "type": {
+      "$ref": "/schemata/samlidp#/definitions/type"
+    },
+    "entity_id": {
+      "$ref": "/schemata/samlidp#/definitions/entity_id"
     }
   },
   "id": "schemata/samlidp"
