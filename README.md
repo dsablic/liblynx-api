@@ -22,7 +22,7 @@ Or install it yourself as:
 gem install liblynx-api
 ```
 
-## Example usage
+## Usage example
 
 ```ruby
 require 'liblynx-api'
