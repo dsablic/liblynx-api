@@ -1,4 +1,4 @@
-# LibLynx API &nbsp;[![Build Status](https://secure.travis-ci.org/mkdynamic/liblynx-api.svg?branch=master)](https://travis-ci.org/mkdynamic/liblynx-api)
+# LibLynx API &nbsp;[![Build Status](https://travis-ci.org/dsablic/liblynx-api.svg?branch=master)](https://travis-ci.org/dsablic/liblynx-api)
 
 Ruby HTTP client for the LibLynx API.
 
