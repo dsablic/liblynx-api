@@ -30,6 +30,6 @@ task build: ['schema:combine', 'schema:verify', 'schema:doc', 'client']
 begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec)
-  task default: [:spec]
+  task default: [:build]
 rescue LoadError
 end
