@@ -356,6 +356,7 @@ Stability: `production`
 | ------- | ------- | ------- | ------- |
 | **authorizations** | *array* | authorizations |  |
 | **created** | *date-time* | when identification was created | `"2015-01-01T12:00:00Z"` |
+| **force_sso_login** | *boolean* | force sso login | `true` |
 | **id** | *uuid* | unique identifier of identification | `"01234567-89ab-cdef-0123-456789abcdef"` |
 | **ip** | *ipv4* | ip address | `"192.0.2.1"` |
 | **publisher:id** | *integer* |  | `42` |
@@ -397,6 +398,7 @@ POST /api/identifications
 | Name | Type | Description | Example |
 | ------- | ------- | ------- | ------- |
 | **email** | *email* | user email address | `"username@example.com"` |
+| **force_sso_login** | *boolean* | force sso login | `true` |
 
 
 #### Curl Example
@@ -407,7 +409,8 @@ $ curl -n -X POST https://connect.liblynx.com/api/identifications \
   "email": "username@example.com",
   "ip": "192.0.2.1",
   "user_agent": "example",
-  "url": "example"
+  "url": "example",
+  "force_sso_login": true
 }' \
   -H "Content-Type: application/json"
 ```
@@ -446,7 +449,8 @@ HTTP/1.1 201 Created
     "individual": true,
     "type": "example",
     "publisher_reference": "example"
-  }
+  },
+  "force_sso_login": true
 }
 ```
 
@@ -499,7 +503,8 @@ HTTP/1.1 200 OK
     "individual": true,
     "type": "example",
     "publisher_reference": "example"
-  }
+  },
+  "force_sso_login": true
 }
 ```
 

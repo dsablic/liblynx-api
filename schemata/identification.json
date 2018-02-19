@@ -155,6 +155,12 @@
       "type": [
         "object"
       ]
+    },
+    "force_sso_login": {
+      "description": "force sso login",
+      "type": [
+        "boolean"
+      ]
     }
   },
   "links": [
@@ -176,6 +182,9 @@
           },
           "url": {
             "$ref": "/schemata/identification#/definitions/url"
+          },
+          "force_sso_login": {
+            "$ref": "/schemata/identification#/definitions/force_sso_login"
           }
         },
         "required": [
@@ -233,6 +242,9 @@
     },
     "target_account": {
       "$ref": "/schemata/identification#/definitions/target_account"
+    },
+    "force_sso_login": {
+      "$ref": "/schemata/identification#/definitions/force_sso_login"
     }
   },
   "id": "schemata/identification"

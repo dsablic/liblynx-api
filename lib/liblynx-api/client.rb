@@ -836,6 +836,12 @@ module LibLynxAPI
           "type": [
             "object"
           ]
+        },
+        "force_sso_login": {
+          "description": "force sso login",
+          "type": [
+            "boolean"
+          ]
         }
       },
       "links": [
@@ -857,6 +863,9 @@ module LibLynxAPI
               },
               "url": {
                 "$ref": "#/definitions/identification/definitions/url"
+              },
+              "force_sso_login": {
+                "$ref": "#/definitions/identification/definitions/force_sso_login"
               }
             },
             "required": [
@@ -914,6 +923,9 @@ module LibLynxAPI
         },
         "target_account": {
           "$ref": "#/definitions/identification/definitions/target_account"
+        },
+        "force_sso_login": {
+          "$ref": "#/definitions/identification/definitions/force_sso_login"
         }
       }
     },

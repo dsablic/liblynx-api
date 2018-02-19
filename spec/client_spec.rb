@@ -18,7 +18,8 @@ describe 'The generated liblynx api client' do
       user_agent: 'Some agent',
       ip: '127.0.0.1',
       url: "http://#{@test_domain}",
-      email: "test@#{@test_domain}"
+      email: "test@#{@test_domain}",
+      force_sso_login: true
     }
   end
 
