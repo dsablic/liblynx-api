@@ -83,7 +83,7 @@ module LibLynxAPI
 
   # Get the default options.
   def self.default_options
-    default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/1.0.1"}
+    default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/1.1.0"}
     {
       default_headers: default_headers,
       url:             "https://connect.liblynx.com"
@@ -110,6 +110,13 @@ module LibLynxAPI
     # @return [Identification]
     def identification
       @identification_resource ||= Identification.new(@client)
+    end
+
+    # 
+    #
+    # @return [Idp]
+    def idp
+      @idp_resource ||= Idp.new(@client)
     end
 
     # 
@@ -157,8 +164,10 @@ module LibLynxAPI
     end
 
     # List existing accounts.
-    def list()
-      @client.account.list()
+    #
+    # @param body: the object to pass as the request payload
+    def list(body = {})
+      @client.account.list(body)
     end
 
     # Update an existing account.
@@ -188,6 +197,20 @@ module LibLynxAPI
     # @param identification_identity: 
     def info(identification_identity)
       @client.identification.info(identification_identity)
+    end
+  end
+
+  # 
+  class Idp
+    def initialize(client)
+      @client = client
+    end
+
+    # List shibboleth idps.
+    #
+    # @param body: the object to pass as the request payload
+    def list(body = {})
+      @client.idp.list(body)
     end
   end
 
@@ -499,6 +522,25 @@ module LibLynxAPI
           "href": "/api/accounts",
           "method": "GET",
           "rel": "instances",
+          "schema": {
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "perpage": {
+                "type": [
+                  "integer"
+                ],
+                "description": "page size"
+              },
+              "page": {
+                "type": [
+                  "integer"
+                ],
+                "description": "page number"
+              }
+            }
+          },
           "targetSchema": {
             "properties": {
               "accounts": {
@@ -929,6 +971,122 @@ module LibLynxAPI
         }
       }
     },
+    "idp": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "idp",
+      "description": "",
+      "stability": "production",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "name": {
+          "description": "name of the institution",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "entity_id": {
+          "description": "shibboleth entity id",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "logo_small_url": {
+          "description": "logo url",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "logo_small_size": {
+          "description": "logo size (WxH)",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/idp/definitions/entity_id"
+        }
+      },
+      "links": [
+        {
+          "description": "List shibboleth idps.",
+          "href": "/api/idps",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List",
+          "schema": {
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "q": {
+                "type": [
+                  "string"
+                ],
+                "description": "query string"
+              },
+              "perpage": {
+                "type": [
+                  "integer"
+                ],
+                "description": "page size"
+              },
+              "page": {
+                "type": [
+                  "integer"
+                ],
+                "description": "page number"
+              }
+            }
+          },
+          "targetSchema": {
+            "properties": {
+              "idps": {
+                "items": {
+                  "properties": {
+                    "name": {
+                      "$ref": "#/definitions/idp/definitions/name"
+                    },
+                    "entity_id": {
+                      "$ref": "#/definitions/idp/definitions/entity_id"
+                    },
+                    "logo_small_url": {
+                      "$ref": "#/definitions/idp/definitions/logo_small_url"
+                    },
+                    "logo_small_size": {
+                      "$ref": "#/definitions/idp/definitions/logo_small_size"
+                    }
+                  }
+                },
+                "type": [
+                  "array"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/idp/definitions/name"
+        },
+        "entity_id": {
+          "$ref": "#/definitions/idp/definitions/entity_id"
+        },
+        "logo_small_url": {
+          "$ref": "#/definitions/idp/definitions/logo_small_url"
+        },
+        "logo_small_size": {
+          "$ref": "#/definitions/idp/definitions/logo_small_size"
+        }
+      }
+    },
     "samlidp": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Samlidp",
@@ -1143,6 +1301,9 @@ module LibLynxAPI
     },
     "identification": {
       "$ref": "#/definitions/identification"
+    },
+    "idp": {
+      "$ref": "#/definitions/idp"
     },
     "samlidp": {
       "$ref": "#/definitions/samlidp"

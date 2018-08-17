@@ -246,6 +246,19 @@
       "href": "/api/accounts",
       "method": "GET",
       "rel": "instances",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "perpage": {
+            "type": "integer",
+            "description": "page size"
+          },
+          "page": {
+            "type": "integer",
+            "description": "page number"
+          }
+        }
+      },
       "targetSchema": {
         "properties": {
           "accounts": {

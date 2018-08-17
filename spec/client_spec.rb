@@ -23,7 +23,16 @@ describe 'The generated liblynx api client' do
     }
   end
 
-  it 'can get list the accounts' do
+  it 'can list the idps' do
+    expect(@client.idp.list).to match(hash_including('idps'))
+  end
+
+  it 'can list the idps using the query filter' do
+    expect(@client.idp.list(q: 'of denver')['idps'])
+      .to include(include('name' => 'University of Denver'))
+  end
+
+  it 'can list the accounts' do
     expect(@client.account.list).to match(hash_including('accounts'))
   end
 

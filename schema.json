@@ -253,6 +253,25 @@
           "href": "/api/accounts",
           "method": "GET",
           "rel": "instances",
+          "schema": {
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "perpage": {
+                "type": [
+                  "integer"
+                ],
+                "description": "page size"
+              },
+              "page": {
+                "type": [
+                  "integer"
+                ],
+                "description": "page number"
+              }
+            }
+          },
           "targetSchema": {
             "properties": {
               "accounts": {
@@ -683,6 +702,122 @@
         }
       }
     },
+    "idp": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "idp",
+      "description": "",
+      "stability": "production",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "name": {
+          "description": "name of the institution",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "entity_id": {
+          "description": "shibboleth entity id",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "logo_small_url": {
+          "description": "logo url",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "logo_small_size": {
+          "description": "logo size (WxH)",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/idp/definitions/entity_id"
+        }
+      },
+      "links": [
+        {
+          "description": "List shibboleth idps.",
+          "href": "/api/idps",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List",
+          "schema": {
+            "type": [
+              "object"
+            ],
+            "properties": {
+              "q": {
+                "type": [
+                  "string"
+                ],
+                "description": "query string"
+              },
+              "perpage": {
+                "type": [
+                  "integer"
+                ],
+                "description": "page size"
+              },
+              "page": {
+                "type": [
+                  "integer"
+                ],
+                "description": "page number"
+              }
+            }
+          },
+          "targetSchema": {
+            "properties": {
+              "idps": {
+                "items": {
+                  "properties": {
+                    "name": {
+                      "$ref": "#/definitions/idp/definitions/name"
+                    },
+                    "entity_id": {
+                      "$ref": "#/definitions/idp/definitions/entity_id"
+                    },
+                    "logo_small_url": {
+                      "$ref": "#/definitions/idp/definitions/logo_small_url"
+                    },
+                    "logo_small_size": {
+                      "$ref": "#/definitions/idp/definitions/logo_small_size"
+                    }
+                  }
+                },
+                "type": [
+                  "array"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/idp/definitions/name"
+        },
+        "entity_id": {
+          "$ref": "#/definitions/idp/definitions/entity_id"
+        },
+        "logo_small_url": {
+          "$ref": "#/definitions/idp/definitions/logo_small_url"
+        },
+        "logo_small_size": {
+          "$ref": "#/definitions/idp/definitions/logo_small_size"
+        }
+      }
+    },
     "samlidp": {
       "$schema": "http://json-schema.org/draft-04/hyper-schema",
       "title": "Samlidp",
@@ -897,6 +1032,9 @@
     },
     "identification": {
       "$ref": "#/definitions/identification"
+    },
+    "idp": {
+      "$ref": "#/definitions/idp"
     },
     "samlidp": {
       "$ref": "#/definitions/samlidp"

@@ -217,11 +217,21 @@ List existing accounts.
 GET /api/accounts
 ```
 
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **page** | *integer* | page number | `42` |
+| **perpage** | *integer* | page size | `42` |
+
 
 #### Curl Example
 
 ```bash
 $ curl -n https://connect.liblynx.com/api/accounts
+ -G \
+  -d perpage=42 \
+  -d page=42
 ```
 
 
@@ -505,6 +515,69 @@ HTTP/1.1 200 OK
     "publisher_reference": "example"
   },
   "force_sso_login": true
+}
+```
+
+
+## <a name="resource-idp">idp</a>
+
+Stability: `production`
+
+
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **entity_id** | *string* | shibboleth entity id | `"example"` |
+| **logo_small_size** | *string* | logo size (WxH) | `"example"` |
+| **logo_small_url** | *string* | logo url | `"example"` |
+| **name** | *string* | name of the institution | `"example"` |
+
+### <a name="link-GET-idp-/api/idps">idp List</a>
+
+List shibboleth idps.
+
+```
+GET /api/idps
+```
+
+#### Optional Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **page** | *integer* | page number | `42` |
+| **perpage** | *integer* | page size | `42` |
+| **q** | *string* | query string | `"example"` |
+
+
+#### Curl Example
+
+```bash
+$ curl -n https://connect.liblynx.com/api/idps
+ -G \
+  -d q=example \
+  -d perpage=42 \
+  -d page=42
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "idps": [
+    {
+      "name": "example",
+      "entity_id": "example",
+      "logo_small_url": "example",
+      "logo_small_size": "example"
+    }
+  ]
 }
 ```
 
