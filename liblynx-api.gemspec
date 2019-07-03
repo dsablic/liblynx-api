@@ -1,5 +1,3 @@
-
-# -*- encoding: utf-8 -*-
 require File.expand_path('../lib/liblynx-api/version', __FILE__)
 
 Gem::Specification.new do |gem|
@@ -17,9 +15,10 @@ Gem::Specification.new do |gem|
   gem.version       = LibLynxAPI::VERSION
 
   gem.add_development_dependency 'bundler'
+  gem.add_development_dependency 'json_schema', '< 0.20.4'
+  gem.add_development_dependency 'prmd'
   gem.add_development_dependency 'rake', '< 11.0'
   gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'prmd'
   gem.add_development_dependency 'yard'
 
   gem.add_dependency 'heroics'
