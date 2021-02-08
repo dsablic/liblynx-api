@@ -13,6 +13,7 @@ Stability: `production`
 | **created_at** | *date-time* | when account was created | `"2015-01-01T12:00:00Z"` |
 | **email_domains** | *string* | cr separated email domains | `"*.somedomain.com\nalt.somedomain2.com"` |
 | **enable_archimed** | *boolean* | enable archimed | `true` |
+| **enable_federated_saml** | *boolean* | enable federated saml | `true` |
 | **enable_individual** | *boolean* | enable individual | `true` |
 | **enable_ip** | *boolean* | enable ip | `true` |
 | **enable_lib_portal_stats** | *boolean* | enable lib portal stats | `true` |
@@ -54,6 +55,7 @@ POST /api/accounts
 | **active** | *boolean* | active | `true` |
 | **email_domains** | *string* | cr separated email domains | `"*.somedomain.com\nalt.somedomain2.com"` |
 | **enable_archimed** | *boolean* | enable archimed | `true` |
+| **enable_federated_saml** | *boolean* | enable federated saml | `true` |
 | **enable_individual** | *boolean* | enable individual | `true` |
 | **enable_ip** | *boolean* | enable ip | `true` |
 | **enable_lib_portal_stats** | *boolean* | enable lib portal stats | `true` |
@@ -80,6 +82,7 @@ $ curl -n -X POST https://connect.liblynx.com/api/accounts \
   "publisher_reference": "example",
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "enable_saml": true,
+  "enable_federated_saml": true,
   "enable_shibboleth": true,
   "shibboleth_entity_id": "example",
   "enable_ip": true,
@@ -113,6 +116,7 @@ HTTP/1.1 201 Created
   "name": "example",
   "publisher_reference": "example",
   "enable_saml": true,
+  "enable_federated_saml": true,
   "enable_shibboleth": true,
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "updated_at": "2015-01-01T12:00:00Z",
@@ -189,6 +193,7 @@ HTTP/1.1 200 OK
   "name": "example",
   "publisher_reference": "example",
   "enable_saml": true,
+  "enable_federated_saml": true,
   "enable_shibboleth": true,
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "updated_at": "2015-01-01T12:00:00Z",
@@ -274,6 +279,7 @@ PUT /api/accounts/{account_id}
 | **active** | *boolean* | active | `true` |
 | **email_domains** | *string* | cr separated email domains | `"*.somedomain.com\nalt.somedomain2.com"` |
 | **enable_archimed** | *boolean* | enable archimed | `true` |
+| **enable_federated_saml** | *boolean* | enable federated saml | `true` |
 | **enable_individual** | *boolean* | enable individual | `true` |
 | **enable_ip** | *boolean* | enable ip | `true` |
 | **enable_lib_portal_stats** | *boolean* | enable lib portal stats | `true` |
@@ -300,6 +306,7 @@ $ curl -n -X PUT https://connect.liblynx.com/api/accounts/$ACCOUNT_ID \
   "publisher_reference": "example",
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "enable_saml": true,
+  "enable_federated_saml": true,
   "enable_shibboleth": true,
   "shibboleth_entity_id": "example",
   "enable_ip": true,
@@ -333,6 +340,7 @@ HTTP/1.1 200 OK
   "name": "example",
   "publisher_reference": "example",
   "enable_saml": true,
+  "enable_federated_saml": true,
   "enable_shibboleth": true,
   "email_domains": "*.somedomain.com\nalt.somedomain2.com",
   "updated_at": "2015-01-01T12:00:00Z",
@@ -350,6 +358,153 @@ HTTP/1.1 200 OK
   "individual_limit": 42,
   "individual": true,
   "type": "example"
+}
+```
+
+
+## <a name="resource-federatedsamlidp">Federatedsamlidp</a>
+
+Stability: `production`
+
+
+
+### Attributes
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **entity_id** | *string* | entity_id | `"example"` |
+| **id** | *integer* | unique identifier of federatedsamlidp | `42` |
+| **organization_id** | *string* | organization_id | `"example"` |
+
+### <a name="link-POST-federatedsamlidp-/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/federatedsamlidps">Federatedsamlidp Create</a>
+
+Create a new federatedsamlidp.
+
+```
+POST /api/accounts/{account_id}/federatedsamlidps
+```
+
+#### Required Parameters
+
+| Name | Type | Description | Example |
+| ------- | ------- | ------- | ------- |
+| **entity_id** | *string* | entity_id | `"example"` |
+
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X POST https://connect.liblynx.com/api/accounts/$ACCOUNT_ID/federatedsamlidps \
+  -d '{
+  "entity_id": "example"
+}' \
+  -H "Content-Type: application/json"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 201 Created
+```
+
+```json
+{
+  "id": 42,
+  "organization_id": "example",
+  "entity_id": "example"
+}
+```
+
+### <a name="link-DELETE-federatedsamlidp-/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/federatedsamlidps/{(%23%2Fdefinitions%2Ffederatedsamlidp%2Fdefinitions%2Fidentity)}">Federatedsamlidp Delete</a>
+
+Delete an existing federatedsamlidp.
+
+```
+DELETE /api/accounts/{account_id}/federatedsamlidps/{federatedsamlidp_id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n -X DELETE https://connect.liblynx.com/api/accounts/$ACCOUNT_ID/federatedsamlidps/$FEDERATEDSAMLIDP_ID \
+  -H "Content-Type: application/json"
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+null
+```
+
+### <a name="link-GET-federatedsamlidp-/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/federatedsamlidps/{(%23%2Fdefinitions%2Ffederatedsamlidp%2Fdefinitions%2Fidentity)}">Federatedsamlidp Info</a>
+
+Info for existing federatedsamlidp.
+
+```
+GET /api/accounts/{account_id}/federatedsamlidps/{federatedsamlidp_id}
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n https://connect.liblynx.com/api/accounts/$ACCOUNT_ID/federatedsamlidps/$FEDERATEDSAMLIDP_ID
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": 42,
+  "organization_id": "example",
+  "entity_id": "example"
+}
+```
+
+### <a name="link-GET-federatedsamlidp-/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/federatedsamlidps">Federatedsamlidp List</a>
+
+List existing federatedsamlidps.
+
+```
+GET /api/accounts/{account_id}/federatedsamlidps
+```
+
+
+#### Curl Example
+
+```bash
+$ curl -n https://connect.liblynx.com/api/accounts/$ACCOUNT_ID/federatedsamlidps
+```
+
+
+#### Response Example
+
+```
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "federatedsamlidps": [
+    {
+      "id": 42,
+      "organization_id": "example",
+      "entity_id": "example"
+    }
+  ]
 }
 ```
 

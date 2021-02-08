@@ -83,7 +83,7 @@ module LibLynxAPI
 
   # Get the default options.
   def self.default_options
-    default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/1.1.2"}
+    default_headers = {"Accept"=>"application/json", "User-Agent"=>"liblynx-api/1.2.0"}
     {
       default_headers: default_headers,
       url:             "https://connect.liblynx.com"
@@ -103,6 +103,13 @@ module LibLynxAPI
     # @return [Account]
     def account
       @account_resource ||= Account.new(@client)
+    end
+
+    # 
+    #
+    # @return [Federatedsamlidp]
+    def federatedsamlidp
+      @federatedsamlidp_resource ||= Federatedsamlidp.new(@client)
     end
 
     # 
@@ -176,6 +183,44 @@ module LibLynxAPI
     # @param body: the object to pass as the request payload
     def update(account_identity, body = {})
       @client.account.update(account_identity, body)
+    end
+  end
+
+  # 
+  class Federatedsamlidp
+    def initialize(client)
+      @client = client
+    end
+
+    # Create a new federatedsamlidp.
+    #
+    # @param account_identity: 
+    # @param body: the object to pass as the request payload
+    def create(account_identity, body = {})
+      @client.federatedsamlidp.create(account_identity, body)
+    end
+
+    # Delete an existing federatedsamlidp.
+    #
+    # @param account_identity: 
+    # @param federatedsamlidp_identity: 
+    def delete(account_identity, federatedsamlidp_identity)
+      @client.federatedsamlidp.delete(account_identity, federatedsamlidp_identity)
+    end
+
+    # Info for existing federatedsamlidp.
+    #
+    # @param account_identity: 
+    # @param federatedsamlidp_identity: 
+    def info(account_identity, federatedsamlidp_identity)
+      @client.federatedsamlidp.info(account_identity, federatedsamlidp_identity)
+    end
+
+    # List existing federatedsamlidps.
+    #
+    # @param account_identity: 
+    def list(account_identity)
+      @client.federatedsamlidp.list(account_identity)
     end
   end
 
@@ -305,6 +350,12 @@ module LibLynxAPI
         },
         "enable_saml": {
           "description": "enable saml",
+          "type": [
+            "boolean"
+          ]
+        },
+        "enable_federated_saml": {
+          "description": "enable federated saml",
           "type": [
             "boolean"
           ]
@@ -445,6 +496,9 @@ module LibLynxAPI
               },
               "enable_saml": {
                 "$ref": "#/definitions/account/definitions/enable_saml"
+              },
+              "enable_federated_saml": {
+                "$ref": "#/definitions/account/definitions/enable_federated_saml"
               },
               "enable_shibboleth": {
                 "$ref": "#/definitions/account/definitions/enable_shibboleth"
@@ -599,6 +653,9 @@ module LibLynxAPI
               "enable_saml": {
                 "$ref": "#/definitions/account/definitions/enable_saml"
               },
+              "enable_federated_saml": {
+                "$ref": "#/definitions/account/definitions/enable_federated_saml"
+              },
               "enable_shibboleth": {
                 "$ref": "#/definitions/account/definitions/enable_shibboleth"
               },
@@ -668,6 +725,9 @@ module LibLynxAPI
         "enable_saml": {
           "$ref": "#/definitions/account/definitions/enable_saml"
         },
+        "enable_federated_saml": {
+          "$ref": "#/definitions/account/definitions/enable_federated_saml"
+        },
         "enable_shibboleth": {
           "$ref": "#/definitions/account/definitions/enable_shibboleth"
         },
@@ -718,6 +778,120 @@ module LibLynxAPI
         },
         "type": {
           "$ref": "#/definitions/account/definitions/type"
+        }
+      }
+    },
+    "federatedsamlidp": {
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "title": "Federatedsamlidp",
+      "description": "",
+      "stability": "production",
+      "strictProperties": true,
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "id": {
+          "description": "unique identifier of federatedsamlidp",
+          "readOnly": true,
+          "type": [
+            "integer"
+          ]
+        },
+        "organization_id": {
+          "description": "organization_id",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "entity_id": {
+          "description": "entity_id",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "$ref": "#/definitions/federatedsamlidp/definitions/id"
+        }
+      },
+      "links": [
+        {
+          "description": "Create a new federatedsamlidp.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/federatedsamlidps",
+          "method": "POST",
+          "rel": "create",
+          "schema": {
+            "properties": {
+              "entity_id": {
+                "$ref": "#/definitions/federatedsamlidp/definitions/entity_id"
+              }
+            },
+            "required": [
+              "entity_id"
+            ],
+            "type": [
+              "object"
+            ]
+          },
+          "title": "Create"
+        },
+        {
+          "description": "Delete an existing federatedsamlidp.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/federatedsamlidps/{(%23%2Fdefinitions%2Ffederatedsamlidp%2Fdefinitions%2Fidentity)}",
+          "method": "DELETE",
+          "rel": "destroy",
+          "title": "Delete",
+          "targetSchema": {
+          }
+        },
+        {
+          "description": "Info for existing federatedsamlidp.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/federatedsamlidps/{(%23%2Fdefinitions%2Ffederatedsamlidp%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "title": "Info"
+        },
+        {
+          "description": "List existing federatedsamlidps.",
+          "href": "/api/accounts/{(%23%2Fdefinitions%2Faccount%2Fdefinitions%2Fidentity)}/federatedsamlidps",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List",
+          "targetSchema": {
+            "properties": {
+              "federatedsamlidps": {
+                "items": {
+                  "properties": {
+                    "id": {
+                      "$ref": "#/definitions/federatedsamlidp/definitions/id"
+                    },
+                    "organization_id": {
+                      "$ref": "#/definitions/federatedsamlidp/definitions/organization_id"
+                    },
+                    "entity_id": {
+                      "$ref": "#/definitions/federatedsamlidp/definitions/entity_id"
+                    }
+                  }
+                },
+                "type": [
+                  "array"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/federatedsamlidp/definitions/id"
+        },
+        "organization_id": {
+          "$ref": "#/definitions/federatedsamlidp/definitions/organization_id"
+        },
+        "entity_id": {
+          "$ref": "#/definitions/federatedsamlidp/definitions/entity_id"
         }
       }
     },
@@ -1298,6 +1472,9 @@ module LibLynxAPI
   "properties": {
     "account": {
       "$ref": "#/definitions/account"
+    },
+    "federatedsamlidp": {
+      "$ref": "#/definitions/federatedsamlidp"
     },
     "identification": {
       "$ref": "#/definitions/identification"

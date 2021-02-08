@@ -34,6 +34,12 @@
         "boolean"
       ]
     },
+    "enable_federated_saml": {
+      "description": "enable federated saml",
+      "type": [
+        "boolean"
+      ]
+    },
     "enable_shibboleth": {
       "description": "enable shibboleth",
       "type": [
@@ -170,6 +176,9 @@
           },
           "enable_saml": {
             "$ref": "/schemata/account#/definitions/enable_saml"
+          },
+          "enable_federated_saml": {
+            "$ref": "/schemata/account#/definitions/enable_federated_saml"
           },
           "enable_shibboleth": {
             "$ref": "/schemata/account#/definitions/enable_shibboleth"
@@ -317,6 +326,9 @@
           "enable_saml": {
             "$ref": "/schemata/account#/definitions/enable_saml"
           },
+          "enable_federated_saml": {
+            "$ref": "/schemata/account#/definitions/enable_federated_saml"
+          },
           "enable_shibboleth": {
             "$ref": "/schemata/account#/definitions/enable_shibboleth"
           },
@@ -385,6 +397,9 @@
     },
     "enable_saml": {
       "$ref": "/schemata/account#/definitions/enable_saml"
+    },
+    "enable_federated_saml": {
+      "$ref": "/schemata/account#/definitions/enable_federated_saml"
     },
     "enable_shibboleth": {
       "$ref": "/schemata/account#/definitions/enable_shibboleth"

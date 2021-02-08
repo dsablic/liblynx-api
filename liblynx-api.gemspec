@@ -19,8 +19,9 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'prmd'
   gem.add_development_dependency 'rake', '< 14.0'
   gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'webrick'
   gem.add_development_dependency 'yard'
 
-  gem.add_dependency 'heroics'
-  gem.add_dependency 'moneta'
+  gem.add_dependency 'heroics', '~> 0.1'
+  gem.add_dependency 'moneta', '~> 1.4'
 end

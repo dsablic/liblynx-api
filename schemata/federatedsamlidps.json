@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "title": "Federatedsamlidp",
+  "description": "",
+  "stability": "production",
+  "strictProperties": true,
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "id": {
+      "description": "unique identifier of federatedsamlidp",
+      "readOnly": true,
+      "type": [
+        "integer"
+      ]
+    },
+    "organization_id": {
+      "description": "organization_id",
+      "readOnly": true,
+      "type": [
+        "string"
+      ]
+    },
+    "entity_id": {
+      "description": "entity_id",
+      "readOnly": true,
+      "type": [
+        "string"
+      ]
+    },
+    "identity": {
+      "$ref": "/schemata/federatedsamlidp#/definitions/id"
+    }
+  },
+  "links": [
+    {
+      "description": "Create a new federatedsamlidp.",
+      "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}/federatedsamlidps",
+      "method": "POST",
+      "rel": "create",
+      "schema": {
+        "properties": {
+          "entity_id": {
+            "$ref": "/schemata/federatedsamlidp#/definitions/entity_id"
+          }
+        },
+        "required": [
+          "entity_id"
+        ],
+        "type": [
+          "object"
+        ]
+      },
+      "title": "Create"
+    },
+    {
+      "description": "Delete an existing federatedsamlidp.",
+      "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}/federatedsamlidps/{(%2Fschemata%2Ffederatedsamlidp%23%2Fdefinitions%2Fidentity)}",
+      "method": "DELETE",
+      "rel": "destroy",
+      "title": "Delete",
+      "targetSchema": {}
+    },
+    {
+      "description": "Info for existing federatedsamlidp.",
+      "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}/federatedsamlidps/{(%2Fschemata%2Ffederatedsamlidp%23%2Fdefinitions%2Fidentity)}",
+      "method": "GET",
+      "rel": "self",
+      "title": "Info"
+    },
+    {
+      "description": "List existing federatedsamlidps.",
+      "href": "/api/accounts/{(%2Fschemata%2Faccount%23%2Fdefinitions%2Fidentity)}/federatedsamlidps",
+      "method": "GET",
+      "rel": "instances",
+      "title": "List",
+      "targetSchema": {
+        "properties": {
+          "federatedsamlidps": {
+            "items": {
+              "properties": {
+                "id": {
+                  "$ref": "/schemata/federatedsamlidp#/definitions/id"
+                },
+                "organization_id": {
+                  "$ref": "/schemata/federatedsamlidp#/definitions/organization_id"
+                },
+                "entity_id": {
+                  "$ref": "/schemata/federatedsamlidp#/definitions/entity_id"
+                }
+              }
+            },
+            "type": [
+              "array"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "id": {
+      "$ref": "/schemata/federatedsamlidp#/definitions/id"
+    },
+    "organization_id": {
+      "$ref": "/schemata/federatedsamlidp#/definitions/organization_id"
+    },
+    "entity_id": {
+      "$ref": "/schemata/federatedsamlidp#/definitions/entity_id"
+    }
+  },
+  "id": "schemata/federatedsamlidp"
+}
