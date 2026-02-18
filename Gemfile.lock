@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    liblynx-api (1.2.1)
+    liblynx-api (1.2.2)
       heroics (~> 0.1)
       moneta (~> 1.4)
 
