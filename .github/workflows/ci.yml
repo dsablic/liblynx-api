@@ -18,4 +18,4 @@ jobs:
           ruby-version: '3.4'
       - uses: rubygems/configure-rubygems-credentials@v1.0.0
       - run: gem build liblynx-api.gemspec
-      - run: gem push pkg/liblynx-api-*.gem
+      - run: gem push liblynx-api-*.gem
