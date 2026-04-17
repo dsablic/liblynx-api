@@ -40,7 +40,7 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-support (3.13.1)
     webrick (1.8.2)
-    yard (0.9.37)
+    yard (0.9.42)
 
 PLATFORMS
   ruby
