@@ -10,6 +10,7 @@
 require 'heroics'
 require 'uri'
 require 'moneta'
+require 'multi_json'
 
 module LibLynxAPI
   # Get a Client configured to use HTTP Basic or header-based authentication.

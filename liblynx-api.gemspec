@@ -24,4 +24,5 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'heroics', '~> 0.1'
   gem.add_dependency 'moneta', '~> 1.4'
+  gem.add_dependency 'multi_json', '~> 1.9'
 end
